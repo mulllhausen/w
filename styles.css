@@ -1,0 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+h1, p {
+    margin: 0;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.parallax-section {
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.parallax-section-1 {
+    background-image: url('img/salt_bae.jpg');
+}
+
+.parallax-section-2 {
+    background-image: url('img/canoe.jpg');
+}
+
+.parallax-section-3 {
+    background-image: url('https://drive.google.com/file/d/1GUrKMBCzWV9qsqfhKhwwQT-0l8KVofsO/view?usp=sharing');
+}
+
+.content-section {
+    padding: 50px 20px;
+    background-color: black;
+    text-align: center;
+}
