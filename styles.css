@@ -63,18 +63,3 @@ h1, p {
 .content-section-1 {
     background-color: red;   
 }
-
-@keyframes scrollToHome {
-    from { transform: translateY(0); }
-    to { transform: translateY(0); }
-}
-
-@keyframes scrollToHowToGetThere {
-    from { transform: translateY(0); }
-    to { transform: translateY(-100vh); }
-}
-
-@keyframes scrollToRSVP {
-    from { transform: translateY(0); }
-    to { transform: translateY(-200vh); }
-}
