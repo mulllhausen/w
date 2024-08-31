@@ -15,7 +15,7 @@ function resizeHeadings() {
             }
         });
     }, {
-        threshold: 0.6 // Trigger when 60% of the section is in view
+        threshold: 0.6 // trigger when 60% of the section is in view
     });
 
     sections.forEach(section => {
