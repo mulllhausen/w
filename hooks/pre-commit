@@ -3,7 +3,7 @@
 # run:
 # cp hooks/pre-commit .git/hooks/pre-commit
 
-source "$(dirname "$0")/../../bash/version-bump.sh"
+source "$(dirname "$0")/../../hooks/version-bump.sh"
 
-bump_version "styles.css" "index.html"
-bump_version "scripts.js" "index.html"
+bump_version "styles.css" "../../index.html"
+bump_version "scripts.js" "../../index.html"

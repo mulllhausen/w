@@ -6,8 +6,6 @@ bump_version() {
 
     if git diff --cached --name-only | grep -q "$FILE"; then
         echo "$FILE has changed. Updating version in $REF_FILE..."
-
-        # Extract the current version number
         CURRENT_VERSION=$(grep -oP "(?<=$FILE\?v=)\d+" "$REF_FILE")
 
         if [ -z "$CURRENT_VERSION" ]; then
