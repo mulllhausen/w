@@ -1,24 +1,34 @@
-<!-- parallax effect like https://www.nolanomura.com/ -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peter and Jhonessa</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="parallax-section parallax-section-1">
-        <h1>Welcome to the Parallax Effect</h1>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <div class="menu">
+      <a href="#home">Peter and Jhonessa's Wedding</a>
+      <a href="#how-to-get-there">How to get there</a>
+      <a href="#rsvp">RSVP</a>
     </div>
-    <div class="content-section">
-        <p>Scroll down to see the parallax effect in action.</p>
-        <p>This effect is created using pure HTML and CSS without any JavaScript.</p>
+    <div id="home" class="parallax-section parallax-section-1"></div>
+    <div class="content-section content-section-1">
+      <p>Scroll down to see the parallax effect in action.</p>
+      <p>
+        This effect is created using pure HTML and CSS without any JavaScript.
+      </p>
     </div>
-    <div class="parallax-section parallax-section-2"></div>
-    <div class="content-section">
-        <p>Another content section to demonstrate how the effect works with multiple layers.</p>
+    <div id="how-to-get-there" class="parallax-section parallax-section-2">
+      <h1>How to get there</h1>
     </div>
-    <div class="parallax-section parallax-section-3"></div>
-</body>
+    <div class="content-section content-section-2">
+      <p>
+        Another content section to demonstrate how the effect works with
+        multiple layers.
+      </p>
+    </div>
+    <div id="rsvp" class="parallax-section parallax-section-3"></div>
+  </body>
 </html>
