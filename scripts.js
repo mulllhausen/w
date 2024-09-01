@@ -1,5 +1,5 @@
 const sectionImages = {
-    'home': 'https://lh3.googleusercontent.com/pw/AP1GczNqCR-5qzTOoHOHItmJ_oyCJMos6X4Ik56X84JOim0wFR9Nhki6rbKnaoUgLs91pnHvlvNRZzDc7MgdQ2iIewyQQGToFga0D77-8qPPa7PA-r49bsK-wYQ-YPI_fm0eUk-INP7MTym5uv98rRWNG_rI=w1245-h934-s-no-gm?authuser=0',
+    'home': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/273539429.jpg?k=2207a8fe734e669dd22d2a9ba3599be6d3f57911c2067fdd83a942be0466204e&o=&hp=1',
     'how-to-get-there': 'https://lh3.googleusercontent.com/pw/AP1GczP8qdFrU4hmAYO85zXpO7MQaPcCMv8d-wyXCBfEN5TL7OlPsXFQd7LQXoRoevFlfDq21yMtWe7kAquCbmOC27AlLLEYe6M5cUJzgQ_et16SHcbYou_YIZ9VGbP7ljOojk9UO_-6N01qpVGyD8PGa1cJ=w1245-h934-s-no-gm?authuser=0',
     'accommodation': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/216176382.jpg?k=9eb3a66232f44bb91b2dac3532fecd408c0f29cc5983c4aa4cd6bb5e0b6e2e38&o=&hp=1',
     'events': 'https://petapixel.com/assets/uploads/2016/05/2-Firedance-12.jpg',
