@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Times New Roman", Times, serif;
   font-size: 12px;
   position: fixed;
   top: 20px;
@@ -52,11 +53,12 @@ body {
 }
 
 .content-section {
-  height: 100vh;
+  min-height: 100vh;
   background-color: white;
   padding: 20px;
   z-index: 1;
   position: relative;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .content-section[data-menu="home"] {
