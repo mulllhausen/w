@@ -49,3 +49,27 @@ body {
   z-index: 1;
   position: relative;
 }
+
+.content-section[data-menu="home"] {
+  background-color: #f89c9c;
+}
+
+.content-section[data-menu="how-to-get-there"] {
+  background-color: teal;
+}
+
+.content-section[data-menu="accommodation"] {
+  background-color: #ffaaff;
+}
+
+.content-section[data-menu="events"] {
+  background-color: #566e56;
+}
+
+.content-section[data-menu="gifts"] {
+  background-color: #6464bd;
+}
+
+.content-section[data-menu="rsvp"] {
+  background-color: #a9a9a9;
+}
