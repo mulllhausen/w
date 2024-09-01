@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', preloadImages);
 document.addEventListener('DOMContentLoaded', initGlobals);
-document.addEventListener('DOMContentLoaded', applyInitialStyles);
+document.addEventListener('DOMContentLoaded', applyStyles);
 document.addEventListener('DOMContentLoaded', setupEnterObserver);
 document.addEventListener('DOMContentLoaded', setupLeaveObserver);
 
@@ -10,10 +10,12 @@ const sectionImages = {
     'rsvp': 'https://lh3.googleusercontent.com/pw/AP1GczPorK6_fE_b-tcABvo48-G3J4rpC8V-DVy3bluacZx8m_QxR1LQSCNdt5Q8UhkA7MkL_Z4Rtbe1-ZLp2I8oB3o7Uwdu4WIh9Uw6Q7aO8epB6yfPNF-NwkcV8As23VfLj03l7QHVedx81I0EKGafNI2k=w1245-h934-s-no-gm?authuser=0'
 };
 let menuLinks;
-let sections;
+let parallaxSections;
+let contentSections;
 function initGlobals() {
     menuLinks = document.querySelectorAll('.menu a');
-    sections = document.querySelectorAll('.parallax-section');
+    parallaxSections = document.querySelectorAll('.parallax-section');
+    contentSections = document.querySelectorAll('.content-section');
 }
 
 function preloadImages() {
@@ -23,47 +25,72 @@ function preloadImages() {
     });
 }
 
-function applyInitialStyles() {
+function applyStyles() {
     const activeSection = getActiveSection();
     if (activeSection) {
-        console.log('initial active section', activeSection);
+        console.log('active section', getMenuForSection(activeSection));
         resizeHeadings({ target: activeSection });
         swapBackgroundImage({ target: activeSection });
     } else {
-        console.log('no initial active section');
+        console.log('no active section');
     }
 }
 
 function getActiveSection() {
     let activeSection = null;
-    sections.forEach(section => {
+    parallaxSections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 0) {
+        if (rect.top < 10) {
             activeSection = section;
         }
     });
     return activeSection;
 }
 
+function getMenuForSection(sectionEl) {
+    return sectionEl.getAttribute('data-menu');
+}
+
+function isBottomOrTop(entry) {
+    return (entry.boundingClientRect.top < 0) ? 'top' : 'bottom';
+}
+
 function setupEnterObserver() {
     const observer = new IntersectionObserver(([intersection]) => {
         if (intersection.isIntersecting) {
-            console.log('enterObserver - entering');
-            swapBackgroundImage(intersection);
-        } else {
-            console.log('enterObserver - leaving');
+            const bottomOrTop = isBottomOrTop(intersection);
+            console.log(
+                `enterObserver - entering from the ${bottomOrTop}`,
+                getMenuForSection(intersection.target)
+            );
+            switch (bottomOrTop) {
+                case 'top':
+                    resizeHeadings(intersection); // on the way up
+                    break;
+                case 'bottom':
+                    swapBackgroundImage(intersection); // on the way down
+                    break;
+            }
         }
     });
-    sections.forEach(section => observer.observe(section));
+    [...parallaxSections, ...contentSections]
+        .forEach(section => observer.observe(section));
 }
 
 function setupLeaveObserver() {
     const observer = new IntersectionObserver(([intersection]) => {
         if (intersection.isIntersecting) {
-            console.log('leaveObserver - entering');
+            const bottomOrTop = isBottomOrTop(intersection);
+            console.log(
+                `leaveObserver - entering from the ${bottomOrTop}`,
+                getMenuForSection(intersection.target)
+            );
             resizeHeadings(intersection);
-        } else {
-            console.log('leaveObserver - leaving');
+            switch (bottomOrTop) {
+                case 'top':
+                    swapBackgroundImage(intersection); // on the way back up
+                    break;
+            }
         }
     }, {
         root: null,
@@ -71,17 +98,19 @@ function setupLeaveObserver() {
         rootMargin: `-10px 0px -${window.innerHeight}px 0px`,
         threshold: 0
     });
-    sections.forEach(section => observer.observe(section));
+    [...parallaxSections, ...contentSections]
+        .forEach(section => observer.observe(section));
 }
 
 function resizeHeadings(entry) {
-    const id = entry.target.getAttribute('id');
+    const id = getMenuForSection(entry.target);
     const menuLink = document.querySelector(`.menu a[href="#${id}"]`);
     menuLinks.forEach(link => link.classList.remove('active'));
     menuLink.classList.add('active');
 }
 
 function swapBackgroundImage(entry) {
+    const id = getMenuForSection(entry.target);
     document.getElementById('parallaxImage').style.backgroundImage =
-        `url('${sectionImages[entry.target.id]}')`;
+        `url('${sectionImages[id]}')`;
 }

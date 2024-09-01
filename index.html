@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peter and Jhonessa</title>
     <link rel="stylesheet" href="styles.css?v=3" />
-    <script src="scripts.js?v=4"></script>
+    <script src="scripts.js?v=5"></script>
   </head>
   <body>
     <div class="menu">
@@ -14,21 +14,28 @@
       <a href="#rsvp">RSVP</a>
     </div>
     <div id="parallaxImage" class="parallax-image"></div>
-    <!-- <div id="intersectingElement"></div> -->
-    <!-- <div class="full-viewport"></div> -->
-    <div id="home" class="parallax-section parallax-section-1"></div>
-    <div class="content-section content-section-1">
+    <div
+      class="parallax-section parallax-section-1"
+      id="home"
+      data-menu="home"
+    ></div>
+    <div class="content-section content-section-1" data-menu="home">
       <p>Welcome!</p>
     </div>
     <div
-      id="how-to-get-there"
       class="parallax-section parallax-section-2"
+      id="how-to-get-there"
+      data-menu="how-to-get-there"
     ></div>
-    <div class="content-section content-section-2">
+    <div class="content-section content-section-2" data-menu="how-to-get-there">
       <p>How to get there: go left then right</p>
     </div>
-    <div id="rsvp" class="parallax-section parallax-section-3"></div>
-    <div class="content-section content-section-3">
+    <div
+      class="parallax-section parallax-section-3"
+      id="rsvp"
+      data-menu="rsvp"
+    ></div>
+    <div class="content-section content-section-3" data-menu="rsvp">
       <p>RSVP by 28 December 2024</p>
     </div>
   </body>
