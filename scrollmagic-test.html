@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peter and Jhonessa</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <script src="scrollmagic-2.0.7.min.js"></script>
     <link rel="stylesheet" href="scrollmagic-styles.css?v=1" />
     <script src="scrollmagic-scripts.js?v=1"></script>
   </head>
@@ -18,18 +16,22 @@
     </div>
     <div id="parallaxImage" class="parallax-image"></div>
 
-    <div id="home" class="parallax-section"></div>
-    <div class="content-section">
+    <div id="home" class="parallax-section" data-menu="home"></div>
+    <div class="content-section" data-menu="home">
       <p>Welcome!</p>
     </div>
 
-    <div id="how-to-get-there" class="parallax-section"></div>
-    <div class="content-section">
+    <div
+      id="how-to-get-there"
+      class="parallax-section"
+      data-menu="how-to-get-there"
+    ></div>
+    <div class="content-section" data-menu="how-to-get-there">
       <p>How to get there: go left then right</p>
     </div>
 
-    <div id="rsvp" class="parallax-section"></div>
-    <div class="content-section">
+    <div id="rsvp" class="parallax-section" data-menu="rsvp"></div>
+    <div class="content-section" data-menu="rsvp">
       <p>RSVP by 28 December 2024</p>
     </div>
   </body>

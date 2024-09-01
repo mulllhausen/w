@@ -1,29 +1,51 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.menu {
+  font-size: 12px;
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.menu a {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.menu a.active {
+  font-size: 35px;
 }
 
 .parallax-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-size: cover;
-    background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
 }
 
 .parallax-section {
-    height: 100vh;
-    background: transparent;
+  height: 100vh;
+  background: transparent;
 }
 
 .content-section {
-    height: 100vh;
-    background-color: white;
-    padding: 20px;
-    z-index: 1;
-    position: relative;
+  height: 100vh;
+  background-color: white;
+  padding: 20px;
+  z-index: 1;
+  position: relative;
 }
