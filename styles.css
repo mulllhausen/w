@@ -37,6 +37,21 @@ p {
 .menu a.active {
   font-size: 35px;
 }
+.full-viewport {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: purple;
+    position: fixed;
+}
+#intersectingElement {
+    position: fixed;
+    height: 30px;
+    width: 100%;
+    background-color: red;
+    z-index: -1;
+}
 
 .parallax-section {
   position: relative;
