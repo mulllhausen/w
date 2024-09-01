@@ -6,9 +6,21 @@ const sectionImages = {
     'gifts': 'https://eclecticstyle.com.au/wp-content/uploads/2023/07/wp-image-14571386536015.png',
     'rsvp': 'https://lh3.googleusercontent.com/pw/AP1GczPorK6_fE_b-tcABvo48-G3J4rpC8V-DVy3bluacZx8m_QxR1LQSCNdt5Q8UhkA7MkL_Z4Rtbe1-ZLp2I8oB3o7Uwdu4WIh9Uw6Q7aO8epB6yfPNF-NwkcV8As23VfLj03l7QHVedx81I0EKGafNI2k=w1245-h934-s-no-gm?authuser=0'
 };
+document.addEventListener('DOMContentLoaded', preloadImages);
 document.addEventListener('DOMContentLoaded', () => {
     const controller = new ScrollMagic.Controller();
-    // Create scenes for each parallax section
+    setupParallax(controller);
+    setupMenu(controller);
+});
+
+function preloadImages() {
+    Object.values(sectionImages).forEach(imageUrl => {
+        const img = new Image();
+        img.src = imageUrl;
+    });
+}
+
+function setupParallax(controller) {
     Object.keys(sectionImages).forEach(sectionId => {
         new ScrollMagic.Scene({
             triggerElement: `#${sectionId}`,
@@ -22,7 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .on('leave', event => {
                 if (event.scrollDirection === 'REVERSE') {
-                    const prevSectionId = Object.keys(sectionImages)[Object.keys(sectionImages).indexOf(sectionId) - 1];
+                    const prevSectionId = Object.keys(sectionImages)
+                    [Object.keys(sectionImages).indexOf(sectionId) - 1];
+
                     if (prevSectionId) {
                         document.getElementById('parallaxImage').style.backgroundImage =
                             `url('${sectionImages[prevSectionId]}')`;
@@ -31,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .addTo(controller);
     });
+}
 
+function setupMenu(controller) {
     Array
         .from(document.querySelectorAll('.parallax-section, .content-section'))
         .forEach(section => {
@@ -46,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document
                         .querySelectorAll('.menu a')
                         .forEach(link => link.classList.remove('active'));
+
                     document
                         .querySelector(`.menu a[href="#${menuID}"]`)
                         .classList
@@ -59,4 +76,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .addTo(controller);
         });
-});
+}
