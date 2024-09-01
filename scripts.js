@@ -1,4 +1,6 @@
+document.addEventListener('DOMContentLoaded', preloadImages);
 document.addEventListener('DOMContentLoaded', initGlobals);
+document.addEventListener('DOMContentLoaded', applyInitialStyles);
 document.addEventListener('DOMContentLoaded', setupEnterObserver);
 document.addEventListener('DOMContentLoaded', setupLeaveObserver);
 
@@ -14,13 +16,42 @@ function initGlobals() {
     sections = document.querySelectorAll('.parallax-section');
 }
 
+function preloadImages() {
+    Object.values(sectionImages).forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
+
+function applyInitialStyles() {
+    const activeSection = getActiveSection();
+    if (activeSection) {
+        console.log('initial active section', activeSection);
+        resizeHeadings({ target: activeSection });
+        swapBackgroundImage({ target: activeSection });
+    } else {
+        console.log('no initial active section');
+    }
+}
+
+function getActiveSection() {
+    let activeSection = null;
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 0) {
+            activeSection = section;
+        }
+    });
+    return activeSection;
+}
+
 function setupEnterObserver() {
     const observer = new IntersectionObserver(([intersection]) => {
         if (intersection.isIntersecting) {
-            console.log('enter - enterObserver');
+            console.log('enterObserver - entering');
             swapBackgroundImage(intersection);
         } else {
-            console.log('leave - enterObserver');
+            console.log('enterObserver - leaving');
         }
     });
     sections.forEach(section => observer.observe(section));
@@ -29,14 +60,14 @@ function setupEnterObserver() {
 function setupLeaveObserver() {
     const observer = new IntersectionObserver(([intersection]) => {
         if (intersection.isIntersecting) {
-            console.log('enter - leaveObserver');
+            console.log('leaveObserver - entering');
             resizeHeadings(intersection);
         } else {
-            console.log('leave - leaveObserver');
+            console.log('leaveObserver - leaving');
         }
     }, {
         root: null,
-        // a small box near the top of the page
+        // a thin box just above the top of the page
         rootMargin: `-10px 0px -${window.innerHeight}px 0px`,
         threshold: 0
     });
