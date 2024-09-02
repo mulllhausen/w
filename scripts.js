@@ -1,5 +1,6 @@
 const sectionImages = {
     'home': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/273539429.jpg?k=2207a8fe734e669dd22d2a9ba3599be6d3f57911c2067fdd83a942be0466204e&o=&hp=1',
+    'about-bohol': 'https://www.travelandleisure.com/thmb/Uyi3xc1u5Z3hUbSGSDqaJMoOV9s=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chocolate-hills-PHIL0116-3a853dd3c6704d84bb5162bb37404279.jpg',
     'how-to-get-there': 'https://lh3.googleusercontent.com/pw/AP1GczP8qdFrU4hmAYO85zXpO7MQaPcCMv8d-wyXCBfEN5TL7OlPsXFQd7LQXoRoevFlfDq21yMtWe7kAquCbmOC27AlLLEYe6M5cUJzgQ_et16SHcbYou_YIZ9VGbP7ljOojk9UO_-6N01qpVGyD8PGa1cJ=w1245-h934-s-no-gm?authuser=0',
     'accommodation': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/216176382.jpg?k=9eb3a66232f44bb91b2dac3532fecd408c0f29cc5983c4aa4cd6bb5e0b6e2e38&o=&hp=1',
     'events': 'https://petapixel.com/assets/uploads/2016/05/2-Firedance-12.jpg',

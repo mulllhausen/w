@@ -3,14 +3,15 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: "Crimson Pro", serif;
 }
 
 .menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 12px;
+  font-size: 16px;
+  font-style: italic;
   position: fixed;
   top: 20px;
   width: 100%;
@@ -19,11 +20,11 @@ body {
 
 .menu a {
   text-decoration: none;
-  background-color: black;
+  background-color: #149d7e;
   color: white;
-  font-weight: bold;
   padding: 10px;
   border-radius: 100px;
+  margin: 2px;
   transition: all 0.3s;
   order: 1; /* default order for inactive items */
 }
@@ -31,7 +32,8 @@ body {
 .menu a.active {
   order: -1; /* move the active item to the first position */
   font-size: 35px;
-  background-color: #ff4f4f;
+  color: #149d7e;
+  background-color: white;
   position: fixed;
   top: 70px;
 }
@@ -53,19 +55,51 @@ body {
 }
 
 .content-section {
+  line-height: 26px;
+  font-size: 20px;
   min-height: 100vh;
-  background-color: white;
+  background-color: #f8fff0;
   padding: 20px;
   z-index: 1;
   position: relative;
-  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  /* font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; */
 }
 
-.content-section[data-menu="home"] {
-  background-color: #f89c9c;
+.image-centerer {
+  display: flex;
+  justify-content: center;
 }
 
-.content-section[data-menu="how-to-get-there"] {
+.image-container img {
+  width: 100%; /* Makes the image fill the container's width */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Removes the small gap under the image */
+}
+
+.content-section[data-menu="home"] .inline-img {
+  width: 30%;
+  margin: 35px 5px 35px 5px;
+}
+
+.content-section[data-menu="about-bohol"] .image-container {
+  width: 30%;
+}
+
+.content-section[data-menu="about-bohol"] .image-area .image-container:nth-child(2) {
+  margin-left: 60%;
+}
+
+.content-section[data-menu="about-bohol"] .image-area .image-container:nth-child(3) {
+  margin-left: 15%;
+}
+
+.content-section[data-menu="about-bohol"] .image-area .image-container:nth-child(4) {
+  margin-left: 60%;
+}
+
+
+
+/*.content-section[data-menu="how-to-get-there"] {
   background-color: teal;
 }
 
@@ -83,4 +117,4 @@ body {
 
 .content-section[data-menu="rsvp"] {
   background-color: #a9a9a9;
-}
+} */
