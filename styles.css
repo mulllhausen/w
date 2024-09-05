@@ -6,6 +6,13 @@ body {
   font-family: "Crimson Pro", serif;
 }
 
+.content-section h1 {
+  font-size: 22px;
+  line-height: 0;
+  margin-top: 40px;
+  margin-bottom: -3px;
+}
+
 .menu {
   display: flex;
   justify-content: center;
@@ -98,9 +105,18 @@ body {
 }
 
 
+.content-section[data-menu="how-to-get-there"] .map img {
+  width: 60%;
+  height: auto;
+}
+.content-section[data-menu="how-to-get-there"] .map {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 100%;
+}
 
-/*.content-section[data-menu="how-to-get-there"] {
-  background-color: teal;
+.content-section[data-menu="how-to-get-there"] .prices-table {
+  font-size: 18px;
 }
 
 .content-section[data-menu="accommodation"] {
