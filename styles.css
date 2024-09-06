@@ -157,8 +157,13 @@ body {
   max-width: 100%;
 }
 
-.content-section[data-menu="how-to-get-there"] .prices-table {
+.prices-table {
   font-size: 18px;
+  border-collapse: collapse;
+}
+.prices-table td {
+  border: 1px solid grey;
+  padding: 0 3px 0 3px;
 }
 /*
 .content-section[data-menu="accommodation"] {
