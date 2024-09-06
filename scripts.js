@@ -1,11 +1,11 @@
 const sectionImages = {
-    'home': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/273539429.jpg?k=2207a8fe734e669dd22d2a9ba3599be6d3f57911c2067fdd83a942be0466204e&o=&hp=1',
+    'home': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/216174658.jpg?k=64d4e9e4164733463d51da1272b43491c9d05aa4f85df0058ef2702e637807f2&o=&hp=1',
     'about-bohol': 'https://www.travelandleisure.com/thmb/Uyi3xc1u5Z3hUbSGSDqaJMoOV9s=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chocolate-hills-PHIL0116-3a853dd3c6704d84bb5162bb37404279.jpg',
-    'how-to-get-there': 'https://lh3.googleusercontent.com/pw/AP1GczP8qdFrU4hmAYO85zXpO7MQaPcCMv8d-wyXCBfEN5TL7OlPsXFQd7LQXoRoevFlfDq21yMtWe7kAquCbmOC27AlLLEYe6M5cUJzgQ_et16SHcbYou_YIZ9VGbP7ljOojk9UO_-6N01qpVGyD8PGa1cJ=w1245-h934-s-no-gm?authuser=0',
+    'how-to-get-there': 'https://lh3.googleusercontent.com/pw/AP1GczNM3B74ScROEdhk3RskYUi19Uz1LEmemU4780S5l-uZw4orUTfCdks5Q3lwDvvu4ajmf28yHnugm3bq3HfNeeJmHIF5UD_gdYu4rkJNafmBJxPTnZzyIBgMmO3XpkRhQ8nnJN44L9iN01xWBFMo7Ah_=w821-h934-s-no-gm?authuser=0',
     'accommodation': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/216176382.jpg?k=9eb3a66232f44bb91b2dac3532fecd408c0f29cc5983c4aa4cd6bb5e0b6e2e38&o=&hp=1',
-    'events': 'https://petapixel.com/assets/uploads/2016/05/2-Firedance-12.jpg',
+    'events': 'https://scontent.fadl6-1.fna.fbcdn.net/v/t39.30808-6/456280335_1044585141005149_1199629259613576740_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4G2NYGLDLYwQ7kNvgGl7wUy&_nc_ht=scontent.fadl6-1.fna&_nc_gid=Aoi6tO6Y4Rc_miZ2NqGtCjW&oh=00_AYDBbzMo0-qZj6dj416VmFfHNEJUiSy9diP4iTkF8qp_yQ&oe=66E0BBC4',
     'gifts': 'https://eclecticstyle.com.au/wp-content/uploads/2023/07/wp-image-14571386536015.png',
-    'rsvp': 'https://lh3.googleusercontent.com/pw/AP1GczPorK6_fE_b-tcABvo48-G3J4rpC8V-DVy3bluacZx8m_QxR1LQSCNdt5Q8UhkA7MkL_Z4Rtbe1-ZLp2I8oB3o7Uwdu4WIh9Uw6Q7aO8epB6yfPNF-NwkcV8As23VfLj03l7QHVedx81I0EKGafNI2k=w1245-h934-s-no-gm?authuser=0'
+    'rsvp': 'https://oceanicaresortpanglao.com/wp-content/uploads/2023/10/landing-gallery-04.jpg'
 };
 document.addEventListener('DOMContentLoaded', preloadImages);
 document.addEventListener('DOMContentLoaded', () => {
