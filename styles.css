@@ -43,6 +43,7 @@ body {
   background-color: white;
   position: fixed;
   top: 70px;
+  width: auto;
 }
 
 .parallax-image {
@@ -72,9 +73,15 @@ body {
   padding: 80px 200px 80px 200px;
 }
 
+/* mobile styles */
 @media screen and (max-width: 600px) {
   .content-section {
     padding: 20px;
+  }
+  .menu a {
+    width: 53px;
+    word-break: break-all;
+    overflow-wrap: break-word;
   }
 }
 
