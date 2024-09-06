@@ -70,6 +70,13 @@ body {
   z-index: 1;
   position: relative;
   /* font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; */
+  padding: 80px;
+}
+
+@media screen and (max-width: 600px) {
+  .content-section {
+    padding: 20px;
+  }
 }
 
 .image-centerer {
@@ -83,6 +90,28 @@ body {
   display: block; /* Removes the small gap under the image */
 }
 
+.inline-img-container {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 30px; /* not quite working */
+  overflow: auto;
+}
+
+.inline-img-container img {
+  width: 46%;
+  max-width: 300px;
+}
+
+.inline-img-container img.keep-left {
+  float: left;
+  margin-right: 20px;
+}
+
+.inline-img-container img.keep-right {
+  float: right;
+  margin-left: 20px;
+}
+
 .content-section[data-menu="home"] .inline-img {
   width: 30%;
   margin: 35px 5px 35px 5px;
@@ -92,18 +121,23 @@ body {
   width: 30%;
 }
 
-.content-section[data-menu="about-bohol"] .image-area .image-container:nth-child(2) {
+.content-section[data-menu="about-bohol"]
+  .image-area
+  .image-container:nth-child(2) {
   margin-left: 60%;
 }
 
-.content-section[data-menu="about-bohol"] .image-area .image-container:nth-child(3) {
+.content-section[data-menu="about-bohol"]
+  .image-area
+  .image-container:nth-child(3) {
   margin-left: 15%;
 }
 
-.content-section[data-menu="about-bohol"] .image-area .image-container:nth-child(4) {
+.content-section[data-menu="about-bohol"]
+  .image-area
+  .image-container:nth-child(4) {
   margin-left: 60%;
 }
-
 
 .content-section[data-menu="how-to-get-there"] .map img {
   width: 60%;
@@ -118,7 +152,7 @@ body {
 .content-section[data-menu="how-to-get-there"] .prices-table {
   font-size: 18px;
 }
-
+/*
 .content-section[data-menu="accommodation"] {
   background-color: #ffaaff;
 }
