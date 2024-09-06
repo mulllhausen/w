@@ -102,6 +102,10 @@ body {
   max-width: 300px;
 }
 
+.inline-img-container p {
+  margin-top: -5px;
+}
+
 .inline-img-container img.keep-left {
   float: left;
   margin-right: 20px;
