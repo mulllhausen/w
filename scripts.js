@@ -43,6 +43,7 @@ const exchangeRates = {
     AED: 0.066,
     JPY: 2.55
 };
+const nbsp = '\xa0';
 
 // event listeners
 document.addEventListener('DOMContentLoaded', () => {
@@ -142,7 +143,7 @@ function changeCurrency(event) {
     for (let i = 0; i < currencyElements.length; i++) {
         const pesos = currencyElements[i].dataset.pesos;
         const converted = pesos * exchangeRates[currency];
-        currencyElements[i].textContent = currency + ' ' +
+        currencyElements[i].textContent = currency + nbsp +
         converted.toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
