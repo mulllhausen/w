@@ -72,14 +72,20 @@ body {
   padding: 80px 200px 80px 200px;
 }
 
-/* mobile styles */
+/* all mobile styles */
 @media screen and (max-width: 600px) {
   .content-section {
     padding: 20px;
   }
+
   .menu a {
     width: 53px;
     overflow-wrap: break-word;
+  }
+
+  .menu a[href="#home"] {
+    /* this one has a lot of text so needs to be bigger than the rest */
+    width: 60px;
   }
 }
 
@@ -148,6 +154,7 @@ body {
 }
 
 .content-section[data-menu="how-to-get-there"] .map img {
+  min-width: 300px;
   width: 60%;
   height: auto;
 }
@@ -162,7 +169,7 @@ body {
   border-collapse: collapse;
 }
 .prices-table td {
-  border: 1px solid grey;
+  border: 1px solid lightgray;
   padding: 0 3px 0 3px;
 }
 /*
