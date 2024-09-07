@@ -1,6 +1,5 @@
 <!--
   TODO: write to the viewer in 2nd person tense
-  TODO: add a link to the official website of the resort and contact details
   TODO: obfuscate email addresses
   TODO: RSVP make sure email app opened correctly. make it clear to the user that they need to send the email
   TODO: dietary requirements
@@ -21,7 +20,7 @@
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
     <link rel="stylesheet" href="styles.css?v=21" />
-    <script src="scripts.js?v=12"></script>
+    <script src="scripts.js?v=13"></script>
     <!-- https://fonts.google.com/selection/embed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -79,11 +78,11 @@
         <select id="currency">
           <option value="AUD">Australian Dollar</option>
           <option value="CAD">Canadian Dollar</option>
-          <option value="PHP" selected>Philippine Peso</option>
-          <option value="GBP">Great Brittain Pounds</option>
           <option value="EUR">Euros</option>
-          <option value="AED">UAE Dirham</option>
+          <option value="GBP">Great Brittain Pounds</option>
           <option value="JPY">Japanese Yen</option>
+          <option value="PHP" selected>Philippine Peso</option>
+          <option value="AED">UAE Dirham</option>
         </select>
       </div>
     </div>
@@ -177,7 +176,7 @@
           through lush greenery and stops off at a folk-dance where you can
           participate if you want to. Overall its a very happy way to spend a
           few hours around lunch. The river is 1 hour drive from Oceanica and
-          the cruise costs less than $30 per person.
+          the cruise costs less than <span data-pesos="1115">PHP 1,115</span> per person.
           <a
             href="https://www.tripadvisor.com.au/Attraction_Review-g1082590-d1073515-Reviews-Loboc_River_Cruise-Loboc_Bohol_Island_Bohol_Province_Visayas.html"
             >Here are some reviews.</a
@@ -353,7 +352,8 @@
       </p>
       <p>
         <mark>
-          Please note: booking at these rates expires on 10 Jan 2025.
+          Please note: these rates is available only for bookings made before 10
+          Jan 2025.
         </mark>
       </p>
       <table class="qua-table">

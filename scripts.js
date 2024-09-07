@@ -144,7 +144,7 @@ function changeCurrency(event) {
         const converted = pesos * exchangeRates[currency];
         currencyElements[i].textContent = currency + ' ' +
         converted.toLocaleString('en-US', {
-            minimumFractionDigits: 0,
+            minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
     }
