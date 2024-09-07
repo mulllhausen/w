@@ -72,7 +72,7 @@ body {
   padding: 80px 200px 80px 200px;
 }
 
-span.warning {
+span.warning, p.warning {
   color: red;
   font-weight: bold;
 }
