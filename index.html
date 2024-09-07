@@ -12,6 +12,7 @@
   TODO: fix heading loading position with scrollmagic padding
   TODO: fix menus on end parallax section
   TODO: bitcoin wallet address and QR code for gifts
+  TODO: opera mini?
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=17" />
+    <link rel="stylesheet" href="styles.css?v=18" />
     <script src="scripts.js?v=10"></script>
     <!-- https://fonts.google.com/selection/embed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +41,7 @@
       <a href="#gifts">Gifts</a>
       <a href="#rsvp">RSVP</a>
     </div>
-    <div id="parallaxImage" class="parallax-image"></div>
+    <div id="parallaxImage" class="parallax-img"></div>
 
     <div id="home" class="parallax-section" data-menu="home"></div>
     <div class="content-section" data-menu="home">
@@ -51,7 +52,7 @@
         - surrounded by palm trees, white sands, turquoise waters and our loving
         friends and family, there to celebrate with us.
       </p>
-      <div class="image-centerer peter-and-jhonessa">
+      <div class="centerer">
         <img
           class="inline-img"
           src="img/inline/peter-and-jhonessa-1-300px.jpg"
@@ -113,7 +114,7 @@
       </p>
       <br />
 
-      <div class="inline-img-container">
+      <div class="floating-img-container">
         <img
           class="keep-left"
           src="img/inline/chocolate-hills-300px.jpg"
@@ -127,13 +128,13 @@
           is a 1.5 hour drive from Oceanica resort. Be ready to
           <a
             href="https://www.tripadvisor.com/ShowUserReviews-g294259-d593829-r585940001-Chocolate_Hills_Natural_Monument-Bohol_Island_Bohol_Province_Visayas.html"
-            >climb</a
+            >climb 220 steps</a
           >
-          220 steps when you arrive, to get the best view.
+          when you arrive, to get the best view.
         </p>
       </div>
       <br />
-      <div class="inline-img-container">
+      <div class="floating-img-container">
         <img
           class="keep-right"
           src="img/inline/tarsiers-300px.jpg"
@@ -152,7 +153,7 @@
         </p>
       </div>
       <br />
-      <div class="inline-img-container">
+      <div class="floating-img-container">
         <img
           class="keep-left"
           src="img/inline/laboc-river-cruise-225px.jfif"
@@ -173,7 +174,7 @@
         </p>
       </div>
       <br />
-      <div class="inline-img-container">
+      <div class="floating-img-container">
         <img
           class="keep-right"
           src="img/inline/dolphins-300px.jpg"
@@ -200,10 +201,11 @@
         the island of Panglao. However Panglao is connected to the main island
         of Bohol by a bridge, so driving there is easy if coming by boat.
       </p>
-      <div class="map">
+      <div class="map centerer">
         <a
           target="_blank"
           href="https://www.google.com/maps/d/edit?mid=1gUXcscOgIy0tNi3YhWmUXuBk9-ZWtsg&usp=sharing"
+          class="img-link"
         >
           <img src="img/inline/map-670px.png" alt="Map of Philippines" />
         </a>
@@ -254,7 +256,7 @@
         airport transfers:
       </p>
       (Rates might change without prior notice)
-      <table class="prices-table">
+      <table class="qua-table">
         <tbody>
           <tr>
             <td>1-2 persons</td>
@@ -286,7 +288,7 @@
       <h1>Tagbilaran Sea Port to Oceanica Resort</h1>
       <p>Tagbilaran Sea Port is 16km or 40 minutes drive to Oceanica Resort.</p>
       <p>(Rates might change without prior notice)</p>
-      <table class="prices-table">
+      <table class="qua-table">
         <tr>
           <td>1-2 person:</td>
           <td>PHP 1,000/trip</td>
@@ -320,7 +322,7 @@
       data-menu="accommodation"
     ></div>
     <div class="content-section" data-menu="accommodation">
-      <table class="prices-table">
+      <table class="qua-table">
         <thead>
           <tr>
             <td>Room Type</td>
@@ -448,7 +450,7 @@
         <a href="https://wise.com/pay/me/peterm2272">click here</a> to view the
         account details or scan the following QR code:
       </p>
-      <div class="image-centerer">
+      <div class="centerer">
         <img src="img/inline/wise-gift-500px.png" class="wise-qr-code" />
       </div>
     </div>

@@ -45,7 +45,7 @@ body {
   width: auto;
 }
 
-.parallax-image {
+.parallax-img {
   position: fixed;
   top: 0;
   left: 0;
@@ -72,6 +72,55 @@ body {
   padding: 80px 200px 80px 200px;
 }
 
+/* begin generic table styles */
+table.qua-table {
+  font-size: 18px;
+  border-collapse: collapse;
+}
+table.qua-table td {
+  border: 1px solid lightgray;
+  padding: 0 3px 0 3px;
+}
+/* end generic table styles*/
+
+/* begin generic inline image styles */
+.centerer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.img-link {
+  display: contents;
+}
+
+.floating-img-container {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 30px;
+  overflow: auto;
+}
+
+.floating-img-container img {
+  width: 46%;
+  max-width: 300px;
+}
+
+.floating-img-container p {
+  margin-top: -5px;
+}
+
+.floating-img-container img.keep-left {
+  float: left;
+  margin-right: 20px;
+}
+
+.floating-img-container img.keep-right {
+  float: right;
+  margin-left: 20px;
+}
+/* end generic inline image styles */
+
 /* all mobile styles */
 @media screen and (max-width: 600px) {
   .content-section {
@@ -93,68 +142,11 @@ body {
   }
 }
 
-.image-centerer {
-  display: flex;
-  justify-content: center;
-}
-
-.image-container img {
-  width: 100%; /* Makes the image fill the container's width */
-  height: auto; /* Maintains the aspect ratio */
-  display: block; /* Removes the small gap under the image */
-}
-
-.inline-img-container {
-  width: 100%;
-  text-align: left;
-  margin-bottom: 30px; /* not quite working */
-  overflow: auto;
-}
-
-.inline-img-container img {
-  width: 46%;
-  max-width: 300px;
-}
-
-.inline-img-container p {
-  margin-top: -5px;
-}
-
-.inline-img-container img.keep-left {
-  float: left;
-  margin-right: 20px;
-}
-
-.inline-img-container img.keep-right {
-  float: right;
-  margin-left: 20px;
-}
-
+/* begin section-specific styles */
 .content-section[data-menu="home"] .inline-img {
   width: 30%;
   margin: 35px 5px 35px 5px;
-}
-
-.content-section[data-menu="about-bohol"] .image-container {
-  width: 30%;
-}
-
-.content-section[data-menu="about-bohol"]
-  .image-area
-  .image-container:nth-child(2) {
-  margin-left: 60%;
-}
-
-.content-section[data-menu="about-bohol"]
-  .image-area
-  .image-container:nth-child(3) {
-  margin-left: 15%;
-}
-
-.content-section[data-menu="about-bohol"]
-  .image-area
-  .image-container:nth-child(4) {
-  margin-left: 60%;
+  max-width: 300px;
 }
 
 .content-section[data-menu="how-to-get-there"] .map img {
@@ -162,39 +154,23 @@ body {
   width: 60%;
   height: auto;
 }
+
 .content-section[data-menu="how-to-get-there"] .map {
-  text-align: center;
-  margin: 0 auto;
   max-width: 100%;
 }
 
-.prices-table {
-  font-size: 18px;
-  border-collapse: collapse;
-}
-.prices-table td {
-  border: 1px solid lightgray;
-  padding: 0 3px 0 3px;
+.content-section[data-menu="accommodation"] {
 }
 
-.wise-qr-code {
+.content-section[data-menu="events"] {
+}
+
+.content-section[data-menu="gifts"] .wise-qr-code {
   margin-top: 30px;
   width: 250px;
 }
 
-/*
-.content-section[data-menu="accommodation"] {
-  background-color: #ffaaff;
-}
-
-.content-section[data-menu="events"] {
-  background-color: #566e56;
-}
-
-.content-section[data-menu="gifts"] {
-  background-color: #6464bd;
-}
-
 .content-section[data-menu="rsvp"] {
-  background-color: #a9a9a9;
-} */
+}
+
+/* end section-specific styles */
