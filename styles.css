@@ -43,6 +43,7 @@ body {
   position: fixed;
   top: 75px;
   width: auto;
+  border: 1px solid #a0ded0;
 }
 
 .parallax-img {
@@ -70,11 +71,6 @@ body {
   z-index: 1;
   position: relative;
   padding: 80px 200px 80px 200px;
-}
-
-span.warning, p.warning {
-  color: red;
-  font-weight: bold;
 }
 
 /* begin generic table styles */

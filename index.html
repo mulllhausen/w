@@ -1,6 +1,5 @@
 <!--
   TODO: write to the viewer in 2nd person tense
-  TODO: currency localisation
   TODO: add a link to the official website of the resort and contact details
   TODO: obfuscate email addresses
   TODO: RSVP make sure email app opened correctly. make it clear to the user that they need to send the email
@@ -21,8 +20,8 @@
     <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=20" />
-    <script src="scripts.js?v=10"></script>
+    <link rel="stylesheet" href="styles.css?v=21" />
+    <script src="scripts.js?v=11"></script>
     <!-- https://fonts.google.com/selection/embed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,6 +74,18 @@
         in Bohol. We have also arranged a welcome soiree on the 26th of May.
         Please scroll down for more details. We hope you can make it!
       </p>
+      <div id="currencySelect">
+        <p>Please select your currency</p>
+        <select id="currency">
+          <option value="AUD">Australian Dollar</option>
+          <option value="CAD">Canadian Dollar</option>
+          <option value="PHP" selected>Philippine Peso</option>
+          <option value="GBP">Great Brittain Pounds</option>
+          <option value="EUR">Euros</option>
+          <option value="AED">UAE Dirham</option>
+          <option value="JPY">Japanese Yen</option>
+        </select>
+      </div>
     </div>
 
     <div
@@ -255,32 +266,32 @@
         Resort in advance. The following rates are available for exclusive
         airport transfers:
       </p>
-      (Rates might change without prior notice)
+      <p>(Rates might change without prior notice)</p>
       <table class="qua-table">
         <tbody>
           <tr>
             <td>1-2 persons</td>
-            <td>PHP 750/trip</td>
+            <td><span data-pesos="750">PHP 750</span>/trip</td>
           </tr>
           <tr>
             <td>3 persons</td>
-            <td>PHP 300/person</td>
+            <td><span data-pesos="300">PHP 300</span>/person</td>
           </tr>
           <tr>
             <td>4-8 persons</td>
-            <td>PHP 230/person</td>
+            <td><span data-pesos="230">PHP 230</span>/person</td>
           </tr>
           <tr>
             <td>9-12 persons</td>
-            <td>PHP 230/person</td>
+            <td><span data-pesos="230">PHP 230</span>/person</td>
           </tr>
           <tr>
             <td>13-22 persons</td>
-            <td>PHP 230/person</td>
+            <td><span data-pesos="230">PHP 230</span>/person</td>
           </tr>
           <tr>
             <td>23-45 persons</td>
-            <td>PHP 200/person</td>
+            <td><span data-pesos="200">PHP 200</span>/person</td>
           </tr>
         </tbody>
       </table>
@@ -291,27 +302,27 @@
       <table class="qua-table">
         <tr>
           <td>1-2 person:</td>
-          <td>PHP 1,000/trip</td>
+          <td><span data-pesos="1000">PHP 1,000</span>/trip</td>
         </tr>
         <tr>
           <td>3 persons:</td>
-          <td>PHP 400/person</td>
+          <td><span data-pesos="400">PHP 400</span>/person</td>
         </tr>
         <tr>
           <td>4-8 persons:</td>
-          <td>PHP 300/person</td>
+          <td><span data-pesos="300">PHP 300</span>/person</td>
         </tr>
         <tr>
           <td>9-12 persons:</td>
-          <td>PHP 270/person</td>
+          <td><span data-pesos="270">PHP 270</span>/person</td>
         </tr>
         <tr>
           <td>13-22 persons:</td>
-          <td>PHP 250/person</td>
+          <td><span data-pesos="250">PHP 250</span>/person</td>
         </tr>
         <tr>
           <td>23-45 persons:</td>
-          <td>PHP 230/person</td>
+          <td><span data-pesos="230">PHP 230</span>/person</td>
         </tr>
       </table>
     </div>
@@ -340,8 +351,10 @@
         options below. However they are offering discounted rates to our wedding
         guests.
       </p>
-      <p class="warning">
-        Please note: booking at these rates expires on 10 Jan 2025.
+      <p>
+        <mark>
+          Please note: booking at these rates expires on 10 Jan 2025.
+        </mark>
       </p>
       <table class="qua-table">
         <thead>
@@ -355,44 +368,44 @@
         <tbody>
           <tr>
             <td>Deluxe Garden View</td>
-            <td>PHP 12,000</td>
-            <td>PHP 9,488</td>
+            <td><span data-pesos="12000">PHP 12,000</span></td>
+            <td><span data-pesos="9488">PHP 9,488</span></td>
             <td>per night for 2</td>
           </tr>
           <tr>
             <td>Deluxe Pool View</td>
-            <td>PHP 13,000</td>
-            <td>PHP 10,488</td>
+            <td><span data-pesos="13000">PHP 13,000</span></td>
+            <td><span data-pesos="10488">PHP 10,488</span></td>
             <td>per night for 2</td>
           </tr>
           <tr>
             <td>Deluxe Beach Front</td>
-            <td>PHP 14,000</td>
-            <td>PHP 11,488</td>
+            <td><span data-pesos="14000">PHP 14,000</span></td>
+            <td><span data-pesos="11488">PHP 11,488</span></td>
             <td>per night for 2</td>
           </tr>
           <tr>
             <td>Premium Beach Front</td>
-            <td>PHP 19,500</td>
-            <td>PHP 16,988</td>
+            <td><span data-pesos="19500">PHP 19,500</span></td>
+            <td><span data-pesos="16988">PHP 16,988</span></td>
             <td>per night for 2</td>
           </tr>
           <tr>
             <td>Beach Villa</td>
-            <td>PHP 21,500</td>
-            <td>PHP 19,988</td>
+            <td><span data-pesos="21500">PHP 21,500</span></td>
+            <td><span data-pesos="19988">PHP 19,988</span></td>
             <td>per night for 2</td>
           </tr>
           <tr>
             <td>Panglao Villa</td>
-            <td>PHP 42,000</td>
-            <td>PHP 37,988</td>
+            <td><span data-pesos="42000">PHP 42,000</span></td>
+            <td><span data-pesos="37988">PHP 37,988</span></td>
             <td>per night for 4</td>
           </tr>
           <tr>
             <td>Extra Person</td>
-            <td>PHP 3,000</td>
-            <td>PHP 2,500</td>
+            <td><span data-pesos="3000">PHP 3,000</span></td>
+            <td><span data-pesos="2500">PHP 2,500</span></td>
             <td>per night</td>
           </tr>
         </tbody>

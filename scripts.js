@@ -1,3 +1,4 @@
+// constants
 const sectionImages = {
     'home': {
         url: 'img/parallax/home.jpg',
@@ -32,13 +33,30 @@ const sectionImages = {
         backgroundPosition: '67% center'
     }
 };
-document.addEventListener('DOMContentLoaded', preloadImages);
+
+const exchangeRates = {
+    CAD: 0.024,
+    AUD: 0.027,
+    GBP: 0.014,
+    PHP: 1,
+    EUR: 0.016,
+    AED: 0.066,
+    JPY: 2.55
+};
+
+// event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    preloadImages();
+
     const controller = new ScrollMagic.Controller();
     setupParallax(controller);
     setupMenu(controller);
+
+    loadCurrency();
+    document.querySelector('select#currency').addEventListener('click', changeCurrency);
 });
 
+// functions
 function preloadImages() {
     Object.values(sectionImages).forEach(imageData => {
         const img = new Image();
@@ -109,4 +127,34 @@ function setupMenu(controller) {
                 })
                 .addTo(controller);
         });
+}
+
+function loadCurrency() {
+    const { currency } = getLocalisationData();
+    document.querySelector('select#currency').value = currency;
+    changeCurrency({ target: { value: currency } });
+}
+
+function changeCurrency(event) {
+    const currency = event.target.value;
+    saveLocalisationData({ currency });
+    const currencyElements = document.querySelectorAll('span[data-pesos]');
+    for (let i = 0; i < currencyElements.length; i++) {
+        const pesos = currencyElements[i].dataset.pesos;
+        const converted = pesos * exchangeRates[currency];
+        currencyElements[i].textContent = currency + ' ' +
+        converted.toLocaleString('en-US', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+        });
+    }
+}
+
+function saveLocalisationData(data) {
+    let existingData = getLocalisationData();
+    localStorage.setItem('localisation-data', JSON.stringify({ ...existingData, ...data }));
+}
+
+function getLocalisationData() {
+    return JSON.parse(localStorage.getItem('localisation-data')) || {};
 }
