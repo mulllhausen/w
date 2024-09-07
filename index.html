@@ -7,9 +7,11 @@
   TODO: dietary requirements
   TODO: discounted rate cutoff date
   TODO: RSVP with list of names
-  TODO: load from QR code to RSVP?
+  TODO: mandatory load-from-QR-code to RSVP?
   TODO: favicon
   TODO: fix heading loading position with scrollmagic padding
+  TODO: fix menus on end parallax section
+  TODO: bitcoin wallet address and QR code for gifts
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=16" />
-    <script src="scripts.js?v=9"></script>
+    <link rel="stylesheet" href="styles.css?v=17" />
+    <script src="scripts.js?v=10"></script>
     <!-- https://fonts.google.com/selection/embed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,15 +54,15 @@
       <div class="image-centerer">
         <img
           class="inline-img"
-          src="https://lh3.googleusercontent.com/pw/AP1GczO9deZrEPkK5ZdNMqZo2jbdC3HgI0ZUAxpfhedhc5m1KIPH_IjMoC0YKhOK73OlQ66rMl1T_i9bFkWtCjyiqhQ6wqXoj24q9HVl2zUSH1EsWIr2orutdbtWOiJIrawN2S3VIxOltmMMKLp-LsIoQRQV=w700-h934-s-no-gm?authuser=0"
+          src="img/inline/peter-and-jhonessa-1-300px.jpg"
         />
         <img
           class="inline-img"
-          src="https://lh3.googleusercontent.com/pw/AP1GczPozOn2cn-2iF5XV-xQCFa15JiETankVJv3heEDz8-ygBm3f_olfl9gPCGSjoxsnpTx5YzOhRnexFO5yEOfe5IC6p5L8OAlhvTJN4W5CL44go8_tVoCSSc7wsHj6jRW3Jh0SAiRW-_u3FpImFcgwvyc=w700-h934-s-no-gm?authuser=0"
+          src="img/inline/peter-and-jhonessa-2-300px.jpg"
         />
         <img
           class="inline-img"
-          src="https://lh3.googleusercontent.com/pw/AP1GczP6xYY9qLnojXqlc__HFLMfRtTtqciF3Xy52qF60wGFox-v2f2jfwAsGOTbn2j8IdB3jU53XnaMrmvVl_W-PQxl2rBs3eWIc1AGdqXqlnR-RjhC55o4R0tf0avld9aJWpDQ9BhyZ8qN3yuTS0A2izdO=w700-h934-s-no-gm?authuser=0"
+          src="img/inline/peter-and-jhonessa-3-300px.jpg"
         />
       </div>
       <p>
@@ -114,7 +116,7 @@
       <div class="inline-img-container">
         <img
           class="keep-left"
-          src="https://kahibalo.com/wp-content/uploads/2024/03/chocolate-hills-bohol-philippines-kahibalo-foundation.jpg"
+          src="img/inline/chocolate-hills-300px.jpg"
           alt="The Chocolate Hills"
         />
         <p>
@@ -134,7 +136,7 @@
       <div class="inline-img-container">
         <img
           class="keep-right"
-          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/af/ac/63/tarsiers.jpg?w=1200&h=-1&s=1"
+          src="img/inline/tarsiers-300px.jpg"
           alt="The Tarsier Sanctuary"
         />
         <p>
@@ -153,7 +155,7 @@
       <div class="inline-img-container">
         <img
           class="keep-left"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHklBS9mJb38dj1H9wyjX10T_b0ibSrWcu_g&s"
+          src="img/inline/laboc-river-cruise-225px.jfif"
           alt="The Loboc River"
         />
         <p>
@@ -174,7 +176,7 @@
       <div class="inline-img-container">
         <img
           class="keep-right"
-          src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/wkbf2egsj9vt6jecubj1/PanglaoIslandHoppingandDolphinWatchingTourinBohol.webp"
+          src="img/inline/dolphins-300px.jpg"
           alt="Dolphin watching"
         />
         <p>
@@ -203,7 +205,7 @@
           target="_blank"
           href="https://www.google.com/maps/d/edit?mid=1gUXcscOgIy0tNi3YhWmUXuBk9-ZWtsg&usp=sharing"
         >
-          <img src="img/map.png" alt="Map of Philippines" />
+          <img src="img/inline/map.png" alt="Map of Philippines" />
         </a>
       </div>
       <p>Hot tip: Avoid flying with Cebu Pacific. They are always late.</p>
@@ -429,7 +431,26 @@
 
     <div id="gifts" class="parallax-section" data-menu="gifts"></div>
     <div class="content-section" data-menu="gifts">
-      <p>Gifts</p>
+      <p>
+        The most valuable gift you can give us for our wedding is your presence.
+        We will be overjoyed if you are able to make it all the way to the
+        Philippines to celebrate with us!
+      </p>
+      <p>
+        We understand that international travel is expensive so please do not
+        feel obligated to give us any gifts. Time spent together is a gift in
+        and of itself.
+      </p>
+      <p>
+        If you do feel you absolutely have to give us a gift then of course it
+        will be greatly appreciated! We have set up an international account
+        with Wise.com. Please either
+        <a href="https://wise.com/pay/me/peterm2272">click here</a> to view the
+        account details or scan the following QR code:
+      </p>
+      <div class="image-centerer">
+        <img src="img/inline/wise-gift.png" class="wise-qr-code" />
+      </div>
     </div>
 
     <div id="rsvp" class="parallax-section" data-menu="rsvp"></div>
