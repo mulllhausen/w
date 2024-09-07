@@ -26,6 +26,10 @@ const sectionImages = {
     'rsvp': {
         url: 'https://oceanicaresortpanglao.com/wp-content/uploads/2023/10/landing-gallery-04.jpg',
         backgroundPosition: '16% center'
+    },
+    'end': {
+        url: 'https://instagram.fadl3-1.fna.fbcdn.net/v/t39.30808-6/430092359_741939988040894_3204782488183755736_n.jpg?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4yMDQ4eDEzNjQuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fadl3-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=2ROnIK6e9C4Q7kNvgFt9iuj&_nc_gid=a7da738413ba416f9cb282ef5d9e6a7a&edm=ALQROFkAAAAA&ccb=7-5&ig_cache_key=MzMxNzQyMTg3MzA5NjEzOTA2MQ%3D%3D.3-ccb7-5&oh=00_AYALyCrvdxUR6CH69-dQahbp67MEciKDTUVL2aXYZzaf2g&oe=66E1BA36&_nc_sid=fc8dfb',
+        backgroundPosition: '67% center'
     }
 };
 document.addEventListener('DOMContentLoaded', preloadImages);
