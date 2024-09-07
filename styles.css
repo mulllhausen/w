@@ -72,12 +72,24 @@ body {
   padding: 80px 200px 80px 200px;
 }
 
+span.warning {
+  color: red;
+  font-weight: bold;
+}
+
 /* begin generic table styles */
 table.qua-table {
   font-size: 18px;
   border-collapse: collapse;
 }
-table.qua-table td {
+
+table.qua-table th {
+  background-color: #149d7e;
+  color: white;
+  font-weight: normal;
+}
+
+table.qua-table th, table.qua-table td {
   border: 1px solid lightgray;
   padding: 0 3px 0 3px;
 }
