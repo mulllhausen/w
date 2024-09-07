@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMenu(controller);
 
     loadCurrency();
-    document.querySelector('select#currency').addEventListener('click', changeCurrency);
+    document.querySelector('select#currency').addEventListener('change', changeCurrency);
 });
 
 // functions
@@ -156,5 +156,7 @@ function saveLocalisationData(data) {
 }
 
 function getLocalisationData() {
-    return JSON.parse(localStorage.getItem('localisation-data')) || {};
+    return JSON.parse(localStorage.getItem('localisation-data')) || {
+        currency: 'PHP'
+    };
 }
