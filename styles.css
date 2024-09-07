@@ -87,6 +87,10 @@ body {
     /* this one has a lot of text so needs to be bigger than the rest */
     width: 60px;
   }
+
+  .menu a.active {
+    width: auto;
+  }
 }
 
 .image-centerer {
