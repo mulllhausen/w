@@ -1,6 +1,6 @@
 <table>
 <thead>
-<tr><td></td><td></td><td>Star Rating</td><td>Distance from Oceanica Resort</td><td>Pool</td><td>Beach�</td><td>Amenities</td></tr>
+<tr><th></th><th></th><th>Star Rating</th><th>Distance from Oceanica Resort</th><th>Pool</th><th>Beach�</th><th>Amenities</th></tr>
 </thead>
 <tbody>
 <tr><td></td><td></td><td></td><td></td><td>(Y/N)</td><td>(Y/N)</td><td></td></tr>
