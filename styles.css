@@ -77,10 +77,9 @@ body {
 table.qua-table {
   display: block;
   max-width: 100%;
-  max-height: 400px;
   font-size: 18px;
   border-collapse: collapse;
-  height: 400px; /* Set the desired height for the table */
+  max-height: 70vh;
   overflow-y: auto;
 }
 
