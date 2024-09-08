@@ -143,12 +143,13 @@ function changeCurrency(event) {
     const currencyElements = document.querySelectorAll('span[data-pesos]');
     for (let i = 0; i < currencyElements.length; i++) {
         const pesos = currencyElements[i].dataset.pesos;
+        const decimalPlaces = currencyElements[i].dataset.decimalPlaces || 2;
         const converted = pesos * exchangeRates[currency];
         currencyElements[i].textContent = currency +
             nbsp +
             converted.toLocaleString('en-US', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                minimumFractionDigits: decimalPlaces,
+                maximumFractionDigits: decimalPlaces
             });
     }
 }
