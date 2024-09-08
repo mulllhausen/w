@@ -35,13 +35,14 @@ const sectionImages = {
 };
 
 const exchangeRates = {
-    CAD: 0.024,
-    AUD: 0.027,
-    GBP: 0.014,
-    PHP: 1,
-    EUR: 0.016,
     AED: 0.066,
-    JPY: 2.55
+    AUD: 0.027,
+    CAD: 0.024,
+    EUR: 0.016,
+    GBP: 0.014,
+    JPY: 2.55,
+    PHP: 1,
+    USD: 0.018
 };
 const nbsp = '\xa0';
 
@@ -143,11 +144,12 @@ function changeCurrency(event) {
     for (let i = 0; i < currencyElements.length; i++) {
         const pesos = currencyElements[i].dataset.pesos;
         const converted = pesos * exchangeRates[currency];
-        currencyElements[i].textContent = currency + nbsp +
-        converted.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+        currencyElements[i].textContent = currency +
+            nbsp +
+            converted.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
     }
 }
 
