@@ -17,8 +17,8 @@
     <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=27" />
-    <script src="scripts.js?v=17"></script>
+    <link rel="stylesheet" href="styles.css?v=28" />
+    <script src="scripts.js?v=18"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -974,21 +974,17 @@
 
     <div id="rsvp" class="parallax-section" data-menu="rsvp"></div>
     <div class="content-section" data-menu="rsvp">
-      <p>RSVP by 28 December 2024</p>
+      <p>Please RSVP by 28 December 2024</p>
       <p>
         <mark>Please note:</mark> RSVP is only available for guests who have
         already been invited.
       </p>
       <div id="rsvp-list">
         <template id="guest-rsvp">
-          <form
-            class="guest-rsvp"
-            data-guest-number="1"
-            onsubmit="return false;"
-          >
+          <form class="guest-rsvp">
             <button class="delete">x</button>
             <h1>Guest 1</h1>
-            <label>Name <input type="text" /></label>
+            <label>Name <input type="text" name="guest-name" /></label>
 
             <label class="radio-grouping attending"
               >Attending<br />
@@ -1010,7 +1006,7 @@
         </template>
       </div>
       <button id="add-guest">Add another guest</button>
-      <button id="submit">Submit</button>
+      <button id="submit-rsvp">Submit</button>
     </div>
 
     <div id="end" class="parallax-section"></div>

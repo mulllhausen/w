@@ -196,7 +196,7 @@ button {
   touch-action: manipulation;
 }
 
-button:hover {
+button:hover, button:active {
   background-color: #7fc3b4;
   color: #149d7e;
 }

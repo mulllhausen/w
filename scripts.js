@@ -170,8 +170,20 @@ function getLocalisationData() {
 // RSVP form
 
 function initRSVP() {
-    cloneGuestRSVP();
-    document.querySelector('#add-guest').addEventListener('click', cloneGuestRSVP);
+    const rsvpData = JSON.parse(localStorage.getItem('rsvp-data')) || [];
+    const numGuestsToPopulate = rsvpData.length === 0 ? 1 : rsvpData.length;
+    for (let i = 0; i < numGuestsToPopulate; i++) {
+        cloneGuestRSVP();
+        if (rsvpData == null) continue;
+        if (rsvpData[i] == null) continue;
+        populateGuestData(document.querySelector('#rsvp-list').lastElementChild, rsvpData[i]);
+    }
+    document
+        .querySelector('.content-section[data-menu="rsvp"] button#add-guest')
+        .addEventListener('click', cloneGuestRSVP);
+    document
+        .querySelector('.content-section[data-menu="rsvp"] button#submit-rsvp')
+        .addEventListener('click', submitRSVP);
 }
 
 function cloneGuestRSVP() {
@@ -185,6 +197,19 @@ function cloneGuestRSVP() {
 function initNewGuestEvents(newGuestRSVPForm) {
     initDietaryRequirementsEvents(newGuestRSVPForm);
     initDeleteButtonEvents(newGuestRSVPForm);
+    newGuestRSVPForm
+        .querySelector('input[type="text"][name="guest-name"]')
+        .addEventListener('keyup', debouncedSaveRSVP);
+    newGuestRSVPForm
+        .querySelectorAll('input[type="radio"][name="attending"]').forEach(radioEl => {
+            radioEl.addEventListener('change', saveRSVP);
+        });
+    newGuestRSVPForm
+        .querySelector('textarea.rsvp-dietary-requirements')
+        .addEventListener('keyup', debouncedSaveRSVP);
+    newGuestRSVPForm
+        .querySelector('input[type="text"][name="guest-name"]')
+        .focus();
 }
 
 function initDietaryRequirementsEvents(newGuestRSVPForm) {
@@ -213,4 +238,54 @@ function resetAllGuestNumbers() {
     allGuestRSVPForms.forEach((guestRSVPForm, index) => {
         guestRSVPForm.querySelector('h1').textContent = `Guest ${index + 1}`;
     });
+}
+
+function populateGuestData(guestRSVPForm, guestData) {
+    if (guestData == null) return;
+    guestRSVPForm.querySelector('input[type="text"][name="guest-name"]').value = guestData.guestName;
+    guestRSVPForm.querySelector(`input[type="radio"][name="attending"][value="${guestData.attending}"]`).checked = true;
+    guestRSVPForm.querySelector('textarea.rsvp-dietary-requirements').value = guestData.dietaryRequirements;
+    if (guestData.attending === 'yes') {
+        guestRSVPForm.querySelector('label.dietary-requirements').classList.remove('hidden');
+    }
+}
+
+function submitRSVP() {
+    saveRSVP();
+    alert('RSVP saved!');
+}
+
+function saveRSVP() {
+    console.log('saveRSVP');
+    const rsvpData = getAllGuestData();
+    localStorage.setItem('rsvp-data', JSON.stringify(rsvpData));
+}
+
+function getAllGuestData() {
+    return Array
+        .from(document.querySelectorAll('form.guest-rsvp'))
+        .map(guestRSVPForm => get1GuestData(guestRSVPForm));
+}
+
+function get1GuestData(guestRSVPForm) {
+    const guestName = guestRSVPForm
+        .querySelector('input[type="text"][name="guest-name"]').value;
+    const attending = guestRSVPForm
+        .querySelector('input[type="radio"][name="attending"]:checked')?.value;
+    const dietaryRequirements = guestRSVPForm
+        .querySelector('textarea.rsvp-dietary-requirements').value;
+
+    return { guestName, attending, dietaryRequirements };
+}
+
+const debouncedSaveRSVP = debounce(saveRSVP, 1000);
+
+function debounce(function_, wait) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            function_.apply(this, args);
+        }, wait);
+    };
 }
