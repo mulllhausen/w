@@ -256,7 +256,6 @@ function submitRSVP() {
 }
 
 function saveRSVP() {
-    console.log('saveRSVP');
     const rsvpData = getAllGuestData();
     localStorage.setItem('rsvp-data', JSON.stringify(rsvpData));
 }
@@ -264,17 +263,25 @@ function saveRSVP() {
 function getAllGuestData() {
     return Array
         .from(document.querySelectorAll('form.guest-rsvp'))
-        .map(guestRSVPForm => get1GuestData(guestRSVPForm));
+        .map(guestRSVPForm => get1GuestData(guestRSVPForm))
+        .filter(oneGuestData => oneGuestData !== null);
 }
 
 function get1GuestData(guestRSVPForm) {
     const guestName = guestRSVPForm
-        .querySelector('input[type="text"][name="guest-name"]').value;
+        .querySelector('input[type="text"][name="guest-name"]')
+        .value.trim();
     const attending = guestRSVPForm
         .querySelector('input[type="radio"][name="attending"]:checked')?.value;
     const dietaryRequirements = guestRSVPForm
-        .querySelector('textarea.rsvp-dietary-requirements').value;
+        .querySelector('textarea.rsvp-dietary-requirements')
+        .value.trim();;
 
+    if (
+        guestName === '' &&
+        attending == null &&
+        dietaryRequirements === ''
+    ) return null;
     return { guestName, attending, dietaryRequirements };
 }
 
