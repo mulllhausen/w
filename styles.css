@@ -44,7 +44,7 @@ body {
   top: 75px;
   width: auto;
   border: 1px solid #a0ded0;
-} 
+}
 
 .parallax-img {
   position: fixed;
@@ -205,9 +205,21 @@ table.qua-table tr:nth-child(even) {
 .content-section[data-menu="accommodation"] table.other-accommodation th {
   min-width: 100px;
 }
-.content-section[data-menu="accommodation"] table.other-accommodation th.amenities,
-.content-section[data-menu="accommodation"] table.other-accommodation th.hotel-name {
+.content-section[data-menu="accommodation"]
+  table.other-accommodation
+  th.hotel-name {
   min-width: 200px;
+}
+.content-section[data-menu="accommodation"]
+  table.other-accommodation
+  th.amenities {
+  min-width: 300px;
+}
+.content-section[data-menu="accommodation"] td:nth-child(3),
+.content-section[data-menu="accommodation"] td:nth-child(5),
+.content-section[data-menu="accommodation"] td:nth-child(6) {
+  text-align: center;
+  vertical-align: middle;
 }
 
 .content-section[data-menu="events"] {
