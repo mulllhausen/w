@@ -1,6 +1,5 @@
 <!--
   TODO: spell check
-  TODO: write to the viewer in 2nd person tense
   TODO: obfuscate email addresses
   TODO: RSVP make sure email app opened correctly. make it clear to the user that they need to send the email
   TODO: dietary requirements
@@ -11,6 +10,7 @@
   TODO: bitcoin wallet address and QR code for gifts
   TODO: opera mini?
   TODO: SIM card info
+  TODO: add google analytics
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +20,16 @@
     <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=25" />
+    <link rel="stylesheet" href="styles.css?v=26" />
     <script src="scripts.js?v=15"></script>
     <!-- https://fonts.google.com/selection/embed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="script"
+      href="https://www.googletagmanager.com/gtag/js?id=UA-110200325-1"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
@@ -976,5 +981,18 @@
     </div>
 
     <div id="end" class="parallax-section"></div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-110200325-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-110200325-1");
+    </script>
   </body>
 </html>

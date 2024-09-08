@@ -165,7 +165,7 @@ table.qua-table tr:nth-child(even) {
 /* end generic inline image styles */
 
 /* all mobile styles */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .content-section {
     padding: 20px;
   }
