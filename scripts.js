@@ -42,6 +42,7 @@ const exchangeRates = {
     GBP: 0.014,
     JPY: 2.55,
     PHP: 1,
+    SGD: 0.023,
     USD: 0.018
 };
 const nbsp = '\xa0';
