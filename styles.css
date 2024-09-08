@@ -164,6 +164,52 @@ table.qua-table tr:nth-child(even) {
 }
 /* end generic inline image styles */
 
+/* begin generic form input styles */
+.hidden {
+  display: none !important;
+}
+
+button {
+  background-color: #149d7e;
+  border-radius: 50px;
+  border-style: none;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  /* font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover {
+  background-color: #7fc3b4;
+  color: #149d7e;
+}
+
+button.delete {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type="radio"] {
+  accent-color: #149d7e;
+}
+/* end generic form input styles */
+
 /* all mobile styles */
 @media screen and (max-width: 750px) {
   .content-section {
@@ -230,7 +276,56 @@ table.qua-table tr:nth-child(even) {
   width: 250px;
 }
 
-.content-section[data-menu="rsvp"] {
+.content-section[data-menu="rsvp"] form.guest-rsvp {
+  position: relative;
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp h1 {
+  margin: 0 0 10px 0;
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp label,
+.content-section[data-menu="rsvp"] .guest-rsvp input[type="text"],
+.content-section[data-menu="rsvp"] .guest-rsvp textarea {
+  display: block; /* different line */
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp input[type="text"],
+.content-section[data-menu="rsvp"] .guest-rsvp textarea {
+  min-width: 300px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp .radio-grouping label,
+.content-section[data-menu="rsvp"] .guest-rsvp input[type="radio"],
+.content-section[data-menu="rsvp"] .guest-rsvp label[for="yes"],
+.content-section[data-menu="rsvp"] .guest-rsvp label[for="no"] {
+  display: inline-block; /* same line */
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp button.delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.content-section[data-menu="rsvp"] .guest-rsvp label.dietary-requirements,
+.content-section[data-menu="rsvp"] .guest-rsvp label.attending {
+  margin-top: 20px;
+}
+
+.content-section[data-menu="rsvp"] form.guest-rsvp:nth-of-type(1) button.delete {
+  display: none;
 }
 
 /* end section-specific styles */

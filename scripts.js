@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadCurrency();
     document.querySelector('select#currency').addEventListener('change', changeCurrency);
+    initRSVP();
 });
 
 // functions
@@ -164,4 +165,52 @@ function getLocalisationData() {
     return JSON.parse(localStorage.getItem('localisation-data')) || {
         currency: 'PHP'
     };
+}
+
+// RSVP form
+
+function initRSVP() {
+    cloneGuestRSVP();
+    document.querySelector('#add-guest').addEventListener('click', cloneGuestRSVP);
+}
+
+function cloneGuestRSVP() {
+    const eachGuestRSVPTemplate = document.querySelector('template#guest-rsvp');
+    const eachGuestRSVPClone = document.importNode(eachGuestRSVPTemplate.content, true);
+    document.querySelector('#rsvp-list').appendChild(eachGuestRSVPClone);
+    initNewGuestEvents(document.querySelector('#rsvp-list').lastElementChild);
+    resetAllGuestNumbers();
+}
+
+function initNewGuestEvents(newGuestRSVPForm) {
+    initDietaryRequirementsEvents(newGuestRSVPForm);
+    initDeleteButtonEvents(newGuestRSVPForm);
+}
+
+function initDietaryRequirementsEvents(newGuestRSVPForm) {
+    newGuestRSVPForm.querySelectorAll('input[type="radio"][name="attending"]').forEach(radioEl => {
+        radioEl.addEventListener('change', event => {
+            const attending = event.target.value === 'yes';
+            const dietaryRequirementsInput = newGuestRSVPForm.querySelector('label.dietary-requirements');
+            if (attending) {
+                dietaryRequirementsInput.classList.remove('hidden');
+            } else {
+                dietaryRequirementsInput.classList.add('hidden');
+            }
+        })
+    });
+}
+
+function initDeleteButtonEvents(newGuestRSVPForm) {
+    newGuestRSVPForm.querySelector('button.delete').addEventListener('click', () => {
+        newGuestRSVPForm.remove();
+        resetAllGuestNumbers();
+    });
+}
+
+function resetAllGuestNumbers() {
+    const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
+    allGuestRSVPForms.forEach((guestRSVPForm, index) => {
+        guestRSVPForm.querySelector('h1').textContent = `Guest ${index + 1}`;
+    });
 }
