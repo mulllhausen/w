@@ -84,7 +84,7 @@ table.qua-table {
 }
 
 table.qua-table thead {
-  position: sticky;
+  position: sticky; /* always keep the table header in view */
   top: 0;
   background-color: white;
   z-index: 1;
@@ -99,9 +99,11 @@ table.qua-table th {
 table.qua-table td {
   border: 1px solid lightgray;
 }
+
 table.qua-table th {
   border-right: 1px solid lightgray;
 }
+
 table.qua-table th:last-child {
   border-right: none;
 }
@@ -117,6 +119,10 @@ table.qua-table th:first-child {
 
 table.qua-table th:last-child {
   border-radius: 0 10px 0 0;
+}
+
+table.qua-table tr:nth-child(even) {
+  background-color: #f3f3f3;
 }
 /* end generic table styles*/
 
@@ -196,7 +202,12 @@ table.qua-table th:last-child {
   max-width: 100%;
 }
 
-.content-section[data-menu="accommodation"] {
+.content-section[data-menu="accommodation"] table.other-accommodation th {
+  min-width: 100px;
+}
+.content-section[data-menu="accommodation"] table.other-accommodation th.amenities,
+.content-section[data-menu="accommodation"] table.other-accommodation th.hotel-name {
+  min-width: 200px;
 }
 
 .content-section[data-menu="events"] {
