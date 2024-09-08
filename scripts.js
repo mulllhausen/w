@@ -252,7 +252,21 @@ function populateGuestData(guestRSVPForm, guestData) {
 
 function submitRSVP() {
     saveRSVP();
-    alert('RSVP saved!');
+
+    const recipient = 'example@example.com';
+    const subject = 'Wedding RSVP';
+    const body = formatEmailBody(getAllGuestData()).join('\n\n');
+
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    const mailtoURL = `mailto:${recipient}?subject=${encodedSubject}&body=${encodedBody}`;
+
+    const anchor = document.createElement('a');
+    anchor.href = mailtoURL;
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
 }
 
 function saveRSVP() {
@@ -295,4 +309,18 @@ function debounce(function_, wait) {
             function_.apply(this, args);
         }, wait);
     };
+}
+
+function formatEmailBody(rsvpData) {
+    return rsvpData
+        .map((guestData, index) => {
+            return format1GuestData(guestData, index);
+        });
+}
+
+function format1GuestData(guestData, index) {
+    return `Guest ${index + 1}
+Name: ${guestData.guestName}
+Attending: ${guestData.attending}
+Dietary Requirements: ${guestData.dietaryRequirements}`;
 }
