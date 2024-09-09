@@ -17,8 +17,8 @@
     <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=28" />
-    <script src="scripts.js?v=20"></script>
+    <link rel="stylesheet" href="styles.css?v=29" />
+    <script src="scripts.js?v=21"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -72,7 +72,7 @@
       </p>
       <p>
         Our wedding will be held on the 28th of May 2025 at the Oceanica Resort
-        in Bohol. We have also arranged a welcome soiree on the 26th of May.
+        in Bohol. We have also arranged a Welcome Soirée on the 26th of May.
         Please scroll down for more details. We hope you can make it!
       </p>
       <div id="currencySelect">
@@ -981,20 +981,40 @@
       </p>
       <div id="rsvp-list">
         <template id="guest-rsvp">
-          <form class="guest-rsvp">
+          <form class="guest-rsvp" onsubmit="return false;">
             <button class="delete">x</button>
             <h1>Guest 1</h1>
             <label>Name <input type="text" name="guest-name" /></label>
 
-            <label class="radio-grouping attending"
-              >Attending<br />
+            <label class="radio-grouping attending-welcome-soiree"
+              >Will you be attending the Welcome Soirée on 26 May 2025?<br />
               <label
                 >Yes
-                <input type="radio" name="attending" value="yes" />
+                <input
+                  type="radio"
+                  name="attending-welcome-soiree"
+                  value="yes"
+                />
               </label>
               <label
                 >No
-                <input type="radio" name="attending" value="no" />
+                <input
+                  type="radio"
+                  name="attending-welcome-soiree"
+                  value="no"
+                />
+              </label>
+            </label>
+
+            <label class="radio-grouping attending-wedding-day"
+              >Will you be attending the Wedding Day on 28 May 2025?<br />
+              <label
+                >Yes
+                <input type="radio" name="attending-wedding-day" value="yes" />
+              </label>
+              <label
+                >No
+                <input type="radio" name="attending-wedding-day" value="no" />
               </label>
             </label>
 
@@ -1005,11 +1025,10 @@
           </form>
         </template>
       </div>
-      <p>
-        <mark>this RSVP form is still under construction, but coming soon!</mark>
-      </p>
+      <div id="rsvp-errors">
+      </div>
       <button id="add-guest">Add another guest</button>
-      <!-- <button id="submit-rsvp">Submit</button> -->
+      <button id="submit-rsvp">RSVP by Email</button>
     </div>
 
     <div id="end" class="parallax-section"></div>

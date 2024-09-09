@@ -320,7 +320,8 @@ input[type="radio"] {
 }
 
 .content-section[data-menu="rsvp"] .guest-rsvp label.dietary-requirements,
-.content-section[data-menu="rsvp"] .guest-rsvp label.attending {
+.content-section[data-menu="rsvp"] .guest-rsvp label.attending-welcome-soiree,
+.content-section[data-menu="rsvp"] .guest-rsvp label.attending-wedding-day {
   margin-top: 20px;
 }
 

@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMenu(controller);
 
     loadCurrency();
-    document.querySelector('select#currency').addEventListener('change', changeCurrency);
+    document
+        .querySelector('select#currency')
+        .addEventListener('change', changeCurrency);
     initRSVP();
 });
 
@@ -145,7 +147,8 @@ function changeCurrency(event) {
     const currencyElements = document.querySelectorAll('span[data-pesos]');
     for (let i = 0; i < currencyElements.length; i++) {
         const pesos = currencyElements[i].dataset.pesos;
-        const decimalPlaces = currencyElements[i].dataset.decimalPlaces || 2;
+        const decimalPlaces = currencyElements[i]
+            .dataset.decimalPlaces || 2;
         const converted = pesos * exchangeRates[currency];
         currencyElements[i].textContent = currency +
             nbsp +
@@ -158,7 +161,9 @@ function changeCurrency(event) {
 
 function saveLocalisationData(data) {
     let existingData = getLocalisationData();
-    localStorage.setItem('localisation-data', JSON.stringify({ ...existingData, ...data }));
+    localStorage.setItem(
+        'localisation-data', JSON.stringify({ ...existingData, ...data })
+    );
 }
 
 function getLocalisationData() {
@@ -176,7 +181,9 @@ function initRSVP() {
         cloneGuestRSVP();
         if (rsvpData == null) continue;
         if (rsvpData[i] == null) continue;
-        populateGuestData(document.querySelector('#rsvp-list').lastElementChild, rsvpData[i]);
+        populateGuestData(
+            document.querySelector('#rsvp-list').lastElementChild, rsvpData[i]
+        );
     }
     document
         .querySelector('.content-section[data-menu="rsvp"] button#add-guest')
@@ -188,7 +195,10 @@ function initRSVP() {
 
 function cloneGuestRSVP() {
     const eachGuestRSVPTemplate = document.querySelector('template#guest-rsvp');
-    const eachGuestRSVPClone = document.importNode(eachGuestRSVPTemplate.content, true);
+
+    const eachGuestRSVPClone = document
+        .importNode(eachGuestRSVPTemplate.content, true);
+
     document.querySelector('#rsvp-list').appendChild(eachGuestRSVPClone);
     initNewGuestEvents(document.querySelector('#rsvp-list').lastElementChild);
     resetAllGuestNumbers();
@@ -201,7 +211,10 @@ function initNewGuestEvents(newGuestRSVPForm) {
         .querySelector('input[type="text"][name="guest-name"]')
         .addEventListener('keyup', debouncedSaveRSVP);
     newGuestRSVPForm
-        .querySelectorAll('input[type="radio"][name="attending"]').forEach(radioEl => {
+        .querySelectorAll(
+            'input[type="radio"][name="attending-welcome-soiree"],' +
+            'input[type="radio"][name="attending-wedding-day"]'
+        ).forEach(radioEl => {
             radioEl.addEventListener('change', saveRSVP);
         });
     newGuestRSVPForm
@@ -213,17 +226,32 @@ function initNewGuestEvents(newGuestRSVPForm) {
 }
 
 function initDietaryRequirementsEvents(newGuestRSVPForm) {
-    newGuestRSVPForm.querySelectorAll('input[type="radio"][name="attending"]').forEach(radioEl => {
-        radioEl.addEventListener('change', event => {
-            const attending = event.target.value === 'yes';
-            const dietaryRequirementsInput = newGuestRSVPForm.querySelector('label.dietary-requirements');
-            if (attending) {
-                dietaryRequirementsInput.classList.remove('hidden');
-            } else {
-                dietaryRequirementsInput.classList.add('hidden');
-            }
-        })
+    const dietaryRequirementsInput = newGuestRSVPForm
+        .querySelector('label.dietary-requirements');
+
+    function updateDietaryRequirementsVisibility() {
+        const attendingWelcomeSoiree = getRadioButtonValue(
+            'attending-welcome-soiree', newGuestRSVPForm
+        ) == 'yes';
+        const attendingWeddingDay = getRadioButtonValue(
+            'attending-wedding-day', newGuestRSVPForm
+        ) == 'yes';
+
+        if (attendingWelcomeSoiree || attendingWeddingDay) {
+            dietaryRequirementsInput.classList.remove('hidden');
+        } else {
+            dietaryRequirementsInput.classList.add('hidden');
+        }
+    }
+
+    newGuestRSVPForm.querySelectorAll(
+        'input[name="attending-welcome-soiree"],' +
+        'input[name="attending-wedding-day"]'
+    ).forEach(radioEl => {
+        radioEl.addEventListener('change', updateDietaryRequirementsVisibility);
     });
+
+    updateDietaryRequirementsVisibility();
 }
 
 function initDeleteButtonEvents(newGuestRSVPForm) {
@@ -242,19 +270,40 @@ function resetAllGuestNumbers() {
 
 function populateGuestData(guestRSVPForm, guestData) {
     if (guestData == null) return;
-    guestRSVPForm.querySelector('input[type="text"][name="guest-name"]').value = guestData.guestName;
-    guestRSVPForm.querySelector(`input[type="radio"][name="attending"][value="${guestData.attending}"]`).checked = true;
-    guestRSVPForm.querySelector('textarea.rsvp-dietary-requirements').value = guestData.dietaryRequirements;
-    if (guestData.attending === 'yes') {
-        guestRSVPForm.querySelector('label.dietary-requirements').classList.remove('hidden');
+    guestRSVPForm.querySelector(
+        'input[type="text"][name="guest-name"]'
+    ).value = guestData.guestName;
+    setRadioButtonValue(
+        'attending-welcome-soiree',
+        guestData.attendingWelcomeSoiree,
+        guestRSVPForm
+    );
+    setRadioButtonValue(
+        'attending-wedding-day',
+        guestData.attendingWeddingDay,
+        guestRSVPForm
+    );
+    guestRSVPForm.querySelector(
+        'textarea.rsvp-dietary-requirements'
+    ).value = guestData.dietaryRequirements;
+    if (
+        guestData.attendingWelcomeSoiree === 'yes' ||
+        guestData.attendingWeddingDay === 'yes'
+    ) {
+        guestRSVPForm
+            .querySelector('label.dietary-requirements')
+            .classList.remove('hidden');
     }
 }
 
 function submitRSVP() {
     saveRSVP();
 
+    const validatedAllGood = validateAllRSVPGuests();
+    if (!validatedAllGood) return;
+
     const recipient = 'example@example.com';
-    const subject = 'Wedding RSVP';
+    const subject = 'RSVP for Peter and Jhonessa\'s Wedding';
     const body = formatEmailBody(getAllGuestData()).join('\n\n');
 
     const encodedSubject = encodeURIComponent(subject);
@@ -285,18 +334,29 @@ function get1GuestData(guestRSVPForm) {
     const guestName = guestRSVPForm
         .querySelector('input[type="text"][name="guest-name"]')
         .value.trim();
-    const attending = guestRSVPForm
-        .querySelector('input[type="radio"][name="attending"]:checked')?.value;
+    const attendingWelcomeSoiree = getRadioButtonValue(
+        'attending-welcome-soiree', guestRSVPForm
+    );
+    const attendingWeddingDay = getRadioButtonValue(
+        'attending-weding-day', guestRSVPForm
+    );
     const dietaryRequirements = guestRSVPForm
         .querySelector('textarea.rsvp-dietary-requirements')
         .value.trim();;
 
     if (
         guestName === '' &&
-        attending == null &&
+        attendingWelcomeSoiree == null &&
+        attendingWeddingDay == null &&
         dietaryRequirements === ''
     ) return null;
-    return { guestName, attending, dietaryRequirements };
+
+    return {
+        guestName,
+        attendingWelcomeSoiree,
+        attendingWeddingDay,
+        dietaryRequirements
+    };
 }
 
 const debouncedSaveRSVP = debounce(saveRSVP, 1000);
@@ -319,8 +379,74 @@ function formatEmailBody(rsvpData) {
 }
 
 function format1GuestData(guestData, index) {
+    const formattedDietaryRequirements = (
+        guestData.attendingWelcomeSoiree === 'yes' ||
+        guestData.attendingWeddingDay === 'yes'
+    ) ? `Dietary Requirements: ${guestData.dietaryRequirements}` : '';
     return `Guest ${index + 1}
 Name: ${guestData.guestName}
-Attending: ${guestData.attending}
-Dietary Requirements: ${guestData.dietaryRequirements}`;
+Attending the Welcome Soirée: ${guestData.attendingWelcomeSoiree}
+Attending on the Wedding Day: ${guestData.attendingWeddingDay}
+${formattedDietaryRequirements}`;
+}
+
+function getRadioButtonValue(radioGroupName, parentElement) {
+    if (parentElement == null) {
+        parentElement = document;
+    }
+    return parentElement
+        .querySelector(`input[type="radio"][name="${radioGroupName}"]:checked`)?.value;
+}
+
+function setRadioButtonValue(radionGroupName, value, parentElement) {
+    if (value == null) return;
+    if (parentElement == null) {
+        parentElement = document;
+    }
+    parentElement
+        .querySelector(`input[type="radio"][name="${radionGroupName}"][value="${value}"]`)
+        .checked = true;
+}
+
+function validateAllRSVPGuests() {
+    const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
+    let allErrors = [];
+    allGuestRSVPForms.forEach((guestRSVPForm, index) => {
+        allErrors = allErrors.concat(validateGuestForm(guestRSVPForm, index + 1));
+    });
+    document.querySelector('#rsvp-errors').innerHTML =
+        '<p>Please enter the following missing information:</p>\n' +
+        '<ul>\n' +
+        '<li>' +
+        allErrors.join('</li>\n<li>') +
+        '</li>\n' +
+        '</ul>';
+
+    return allErrors.length === 0;
+}
+
+function validateGuestForm(guestForm, guestNumber) {
+    let errors = [];
+    const guestNameInput = guestForm.querySelector(
+        'input[type="text"][name="guest-name"]'
+    );
+    const attendingWelcomeSoiree = getRadioButtonValue('attending-welcome-soiree', guestForm);
+    const attendingWeddingDay = getRadioButtonValue('attending-wedding-day', guestForm);
+
+    let guestName = `Guest ${guestNumber}`;
+    if (guestNameInput.value.trim() === '') {
+        errors.push(`Please enter the Name of ${guestName}.`);
+    } else {
+        guestName = guestNameInput.value.trim();
+    }
+
+    if (attendingWelcomeSoiree == null) {
+        errors.push(`Please select if ${guestName} is attending the Welcome Soirée.`);
+    }
+
+    if (attendingWeddingDay == null) {
+        errors.push(`Please select if ${guestName} is attending the Wedding Day.`);
+    }
+
+    return errors;
 }
