@@ -415,11 +415,11 @@ function validateAllRSVPGuests() {
         allErrors = allErrors.concat(validateGuestForm(guestRSVPForm, index + 1));
     });
     document.querySelector('#rsvp-errors').innerHTML =
-        '<p>Please enter the following missing information:</p>\n' +
+        '<p><mark>Please enter the following missing information:</mark></p>\n' +
         '<ul>\n' +
-        '<li>' +
-        allErrors.join('</li>\n<li>') +
-        '</li>\n' +
+        '<li><mark>' +
+        allErrors.join('</mark></li>\n<li><mark>') +
+        '</mark></li>\n' +
         '</ul>';
 
     return allErrors.length === 0;
