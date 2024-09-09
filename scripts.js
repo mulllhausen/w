@@ -220,9 +220,6 @@ function initNewGuestEvents(newGuestRSVPForm) {
     newGuestRSVPForm
         .querySelector('textarea.rsvp-dietary-requirements')
         .addEventListener('keyup', debouncedUpdatedRSVP);
-    newGuestRSVPForm
-        .querySelector('input[type="text"][name="guest-name"]')
-        .focus();
 }
 
 function initDietaryRequirementsEvents(newGuestRSVPForm) {
@@ -305,7 +302,7 @@ function submitRSVP() {
 
     const recipient = deobfuscate(
         '112-101-116-101-114-109-105-108-108-101-114-49-57-56-54-64-103-109-97-' +
-        '105-108-46-99-111-109-59-109-97-103-97-100-97-110-46-106-104-111-110-101-' +
+        '105-108-46-99-111-109-44-109-97-103-97-100-97-110-46-106-104-111-110-101-' +
         '115-115-97-64-103-109-97-105-108-46-99-111-109'
     );
     const subject = 'RSVP for Peter and Jhonessa\'s Wedding';
