@@ -209,11 +209,14 @@ button.delete {
 input[type="radio"] {
   accent-color: #149d7e;
 }
-input[type="text"], textarea, select {
+input[type="text"],
+textarea,
+select {
   padding: 10px;
   font-size: 16px;
   border: 1px solid lightgray;
   border-radius: 10px;
+  max-width: 80%;
 }
 /* end generic form input styles */
 
@@ -235,6 +238,16 @@ input[type="text"], textarea, select {
 
   .menu a.active {
     width: auto;
+  }
+
+  input[type="text"],
+  textarea {
+    max-width: 70vw !important;
+  }
+
+  .content-section[data-menu="rsvp"] .rsvp-errors,
+  .content-section[data-menu="rsvp"] .rsvp-buttons {
+    max-width: 100vw;
   }
 }
 
@@ -301,7 +314,7 @@ input[type="text"], textarea, select {
 .content-section[data-menu="rsvp"] .rsvp-buttons {
   display: table;
   position: relative;
-  min-width: 400px;
+  width: 400px;
   max-width: 100%;
   margin: 0 auto 20px auto;
 }
@@ -318,7 +331,6 @@ input[type="text"], textarea, select {
 
 .content-section[data-menu="rsvp"] .guest-rsvp input[type="text"],
 .content-section[data-menu="rsvp"] .guest-rsvp textarea {
-  min-width: 300px;
   width: 400px;
   max-width: 90%;
 }
