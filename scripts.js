@@ -209,17 +209,17 @@ function initNewGuestEvents(newGuestRSVPForm) {
     initDeleteButtonEvents(newGuestRSVPForm);
     newGuestRSVPForm
         .querySelector('input[type="text"][name="guest-name"]')
-        .addEventListener('keyup', debouncedSaveRSVP);
+        .addEventListener('keyup', debouncedUpdatedRSVP);
     newGuestRSVPForm
         .querySelectorAll(
             'input[type="radio"][name="attending-welcome-soiree"],' +
             'input[type="radio"][name="attending-wedding-day"]'
         ).forEach(radioEl => {
-            radioEl.addEventListener('change', saveRSVP);
+            radioEl.addEventListener('change', updatedRSVP);
         });
     newGuestRSVPForm
         .querySelector('textarea.rsvp-dietary-requirements')
-        .addEventListener('keyup', debouncedSaveRSVP);
+        .addEventListener('keyup', debouncedUpdatedRSVP);
     newGuestRSVPForm
         .querySelector('input[type="text"][name="guest-name"]')
         .focus();
@@ -258,6 +258,7 @@ function initDeleteButtonEvents(newGuestRSVPForm) {
     newGuestRSVPForm.querySelector('button.delete').addEventListener('click', () => {
         newGuestRSVPForm.remove();
         resetAllGuestNumbers();
+        validateAllRSVPGuests();
     });
 }
 
@@ -338,7 +339,7 @@ function get1GuestData(guestRSVPForm) {
         'attending-welcome-soiree', guestRSVPForm
     );
     const attendingWeddingDay = getRadioButtonValue(
-        'attending-weding-day', guestRSVPForm
+        'attending-wedding-day', guestRSVPForm
     );
     const dietaryRequirements = guestRSVPForm
         .querySelector('textarea.rsvp-dietary-requirements')
@@ -359,7 +360,12 @@ function get1GuestData(guestRSVPForm) {
     };
 }
 
-const debouncedSaveRSVP = debounce(saveRSVP, 1000);
+const debouncedUpdatedRSVP = debounce(updatedRSVP, 1000);
+
+function updatedRSVP() {
+    saveRSVP();
+    validateAllRSVPGuests();    
+}
 
 function debounce(function_, wait) {
     let timeout;
@@ -383,8 +389,7 @@ function format1GuestData(guestData, index) {
         guestData.attendingWelcomeSoiree === 'yes' ||
         guestData.attendingWeddingDay === 'yes'
     ) ? `Dietary Requirements: ${guestData.dietaryRequirements}` : '';
-    return `Guest ${index + 1}
-Name: ${guestData.guestName}
+    return `${guestData.guestName}
 Attending the Welcome Soirée: ${guestData.attendingWelcomeSoiree}
 Attending on the Wedding Day: ${guestData.attendingWeddingDay}
 ${formattedDietaryRequirements}`;
@@ -412,20 +417,23 @@ function validateAllRSVPGuests() {
     const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
     let allErrors = [];
     allGuestRSVPForms.forEach((guestRSVPForm, index) => {
-        allErrors = allErrors.concat(validateGuestForm(guestRSVPForm, index + 1));
+        allErrors = allErrors.concat(validate1GuestForm(guestRSVPForm, index + 1));
     });
-    document.querySelector('#rsvp-errors').innerHTML =
+    let validationErrorListHTML = '';
+    if (allErrors.length > 0) {
+        validationErrorListHTML =
         '<p><mark>Please enter the following missing information:</mark></p>\n' +
         '<ul>\n' +
         '<li><mark>' +
         allErrors.join('</mark></li>\n<li><mark>') +
         '</mark></li>\n' +
         '</ul>';
-
+    }
+    document.querySelector('#rsvp-errors').innerHTML = validationErrorListHTML;
     return allErrors.length === 0;
 }
 
-function validateGuestForm(guestForm, guestNumber) {
+function validate1GuestForm(guestForm, guestNumber) {
     let errors = [];
     const guestNameInput = guestForm.querySelector(
         'input[type="text"][name="guest-name"]'

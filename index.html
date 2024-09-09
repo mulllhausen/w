@@ -17,8 +17,8 @@
     <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=29" />
-    <script src="scripts.js?v=22"></script>
+    <link rel="stylesheet" href="styles.css?v=30" />
+    <script src="scripts.js?v=23"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -979,7 +979,7 @@
         <mark>Please note:</mark> RSVP is only available for guests who have
         already been invited.
       </p>
-      <div id="rsvp-list">
+      <div id="rsvp-list" class="rsvp-list centerer">
         <template id="guest-rsvp">
           <form class="guest-rsvp" onsubmit="return false;">
             <button class="delete">x</button>
@@ -1025,10 +1025,12 @@
           </form>
         </template>
       </div>
-      <div id="rsvp-errors">
+      <div id="rsvp-errors" class="rsvp-errors">
       </div>
+      <div class="rsvp-buttons">
       <button id="add-guest">Add another guest</button>
       <button id="submit-rsvp">RSVP by Email</button>
+      </div>
     </div>
 
     <div id="end" class="parallax-section"></div>

@@ -183,7 +183,7 @@ button {
   height: 40px;
   line-height: 20px;
   list-style: none;
-  margin: 0;
+  margin: 3px;
   outline: none;
   padding: 10px 16px;
   position: relative;
@@ -276,12 +276,27 @@ input[type="radio"] {
   width: 250px;
 }
 
+.content-section[data-menu="rsvp"] .rsvp-list {
+  flex-direction: column; /* 1 form per row */
+}
+
 .content-section[data-menu="rsvp"] form.guest-rsvp {
+  display: table;
   position: relative;
   border: 1px solid lightgray;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  width: 10px; /* something smaller than the form width */
+  margin: 0 auto 20px auto;
+}
+
+.content-section[data-menu="rsvp"] .rsvp-errors,
+.content-section[data-menu="rsvp"] .rsvp-buttons {
+  display: table;
+  position: relative;
+  min-width: 400px;
+  max-width: 100%;
+  margin: 0 auto 20px auto;
 }
 
 .content-section[data-menu="rsvp"] .guest-rsvp h1 {
