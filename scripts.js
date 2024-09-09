@@ -369,10 +369,11 @@ function updatedRSVP() {
 
 function debounce(function_, wait) {
     let timeout;
-    return (...args) => {
+    return function(...args) {
+        const context = this;
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-            function_.apply(this, args);
+            function_.apply(context, args);
         }, wait);
     };
 }

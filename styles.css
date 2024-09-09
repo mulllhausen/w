@@ -196,7 +196,8 @@ button {
   touch-action: manipulation;
 }
 
-button:hover, button:active {
+button:hover,
+button:active {
   background-color: #7fc3b4;
   color: #149d7e;
 }
@@ -207,6 +208,12 @@ button.delete {
 
 input[type="radio"] {
   accent-color: #149d7e;
+}
+input[type="text"], textarea, select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
 }
 /* end generic form input styles */
 
@@ -340,7 +347,9 @@ input[type="radio"] {
   margin-top: 20px;
 }
 
-.content-section[data-menu="rsvp"] form.guest-rsvp:nth-of-type(1) button.delete {
+.content-section[data-menu="rsvp"]
+  form.guest-rsvp:nth-of-type(1)
+  button.delete {
   display: none;
 }
 
