@@ -1,6 +1,5 @@
 <!--
   TODO: spell check
-  TODO: obfuscate email addresses
   TODO: RSVP make sure email app opened correctly. make it clear to the user that they need to send the email
   TODO: mandatory load-from-QR-code to RSVP?
   TODO: fix heading loading position with scrollmagic padding
@@ -18,7 +17,7 @@
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
     <link rel="stylesheet" href="styles.css?v=32" />
-    <script src="scripts.js?v=24"></script>
+    <script src="scripts.js?v=25"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -1025,11 +1024,10 @@
           </form>
         </template>
       </div>
-      <div id="rsvp-errors" class="rsvp-errors">
-      </div>
+      <div id="rsvp-errors" class="rsvp-errors"></div>
       <div class="rsvp-buttons">
-      <button id="add-guest">Add another guest</button>
-      <button id="submit-rsvp">RSVP by Email</button>
+        <button id="add-guest">Add another guest</button>
+        <button id="submit-rsvp">RSVP by Email</button>
       </div>
     </div>
 

@@ -303,7 +303,11 @@ function submitRSVP() {
     const validatedAllGood = validateAllRSVPGuests();
     if (!validatedAllGood) return;
 
-    const recipient = 'example@example.com';
+    const recipient = deobfuscate(
+        '112-101-116-101-114-109-105-108-108-101-114-49-57-56-54-64-103-109-97-' +
+        '105-108-46-99-111-109-59-109-97-103-97-100-97-110-46-106-104-111-110-101-' +
+        '115-115-97-64-103-109-97-105-108-46-99-111-109'
+    );
     const subject = 'RSVP for Peter and Jhonessa\'s Wedding';
     const body = formatEmailBody(getAllGuestData()).join('\n\n');
 
@@ -364,12 +368,12 @@ const debouncedUpdatedRSVP = debounce(updatedRSVP, 1000);
 
 function updatedRSVP() {
     saveRSVP();
-    validateAllRSVPGuests();    
+    validateAllRSVPGuests();
 }
 
 function debounce(function_, wait) {
     let timeout;
-    return function(...args) {
+    return function (...args) {
         const context = this;
         clearTimeout(timeout);
         timeout = setTimeout(() => {
@@ -423,12 +427,12 @@ function validateAllRSVPGuests() {
     let validationErrorListHTML = '';
     if (allErrors.length > 0) {
         validationErrorListHTML =
-        '<p><mark>Please enter the following missing information:</mark></p>\n' +
-        '<ul>\n' +
-        '<li><mark>' +
-        allErrors.join('</mark></li>\n<li><mark>') +
-        '</mark></li>\n' +
-        '</ul>';
+            '<p><mark>Please enter the following missing information:</mark></p>\n' +
+            '<ul>\n' +
+            '<li><mark>' +
+            allErrors.join('</mark></li>\n<li><mark>') +
+            '</mark></li>\n' +
+            '</ul>';
     }
     document.querySelector('#rsvp-errors').innerHTML = validationErrorListHTML;
     return allErrors.length === 0;
@@ -458,4 +462,17 @@ function validate1GuestForm(guestForm, guestNumber) {
     }
 
     return errors;
+}
+
+function obfuscate(str) {
+    let obfuscated = [];
+    for (var i = 0; i < str.length; i++) {
+        obfuscated.push(str.charCodeAt(i));
+    }
+    return obfuscated.join('-');
+}
+
+function deobfuscate(str) {
+    return str.split('-')
+        .map(code => String.fromCharCode(code)).join('');
 }
