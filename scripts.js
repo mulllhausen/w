@@ -300,17 +300,20 @@ function submitRSVP() {
     const validatedAllGood = validateAllRSVPGuests();
     if (!validatedAllGood) return;
 
-    const recipient = deobfuscate(
-        '112-101-116-101-114-109-105-108-108-101-114-49-57-56-54-64-103-109-97-' +
-        '105-108-46-99-111-109-44-109-97-103-97-100-97-110-46-106-104-111-110-101-' +
+    const to = deobfuscate(
+        '109-97-103-97-100-97-110-106-104-111-110-101-' +
         '115-115-97-64-103-109-97-105-108-46-99-111-109'
+    );
+    const cc = deobfuscate(
+        '112-101-116-101-114-109-105-108-108-101-114-49-57-56-54-64-103-109-97-' +
+        '105-108-46-99-111-109'
     );
     const subject = 'RSVP for Peter and Jhonessa\'s Wedding';
     const body = formatEmailBody(getAllGuestData()).join('\n\n');
 
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
-    const mailtoURL = `mailto:${recipient}?subject=${encodedSubject}&body=${encodedBody}`;
+    const mailtoURL = `mailto:${to}?cc=${cc}&subject=${encodedSubject}&body=${encodedBody}`;
 
     const anchor = document.createElement('a');
     anchor.href = mailtoURL;
