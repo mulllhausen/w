@@ -296,8 +296,18 @@ select {
   width: 250px;
 }
 
+.content-section[data-menu="rsvp"] iframe.google-form {
+  display: table;
+  position: relative;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 25px 0 20px 0;
+  margin: auto;
+}
+
+/* 
 .content-section[data-menu="rsvp"] .rsvp-list {
-  flex-direction: column; /* 1 form per row */
+  flex-direction: column; / * 1 form per row * /
 }
 
 .content-section[data-menu="rsvp"] form.guest-rsvp {
@@ -306,7 +316,7 @@ select {
   border: 1px solid lightgray;
   padding: 20px;
   border-radius: 10px;
-  width: 10px; /* something smaller than the form width */
+  width: 10px; / * something smaller than the form width * /
   margin: 0 auto 20px auto;
 }
 
@@ -326,7 +336,7 @@ select {
 .content-section[data-menu="rsvp"] .guest-rsvp label,
 .content-section[data-menu="rsvp"] .guest-rsvp input[type="text"],
 .content-section[data-menu="rsvp"] .guest-rsvp textarea {
-  display: block; /* different line */
+  display: block; / * different line * /
 }
 
 .content-section[data-menu="rsvp"] .guest-rsvp input[type="text"],
@@ -344,7 +354,7 @@ select {
 .content-section[data-menu="rsvp"] .guest-rsvp input[type="radio"],
 .content-section[data-menu="rsvp"] .guest-rsvp label[for="yes"],
 .content-section[data-menu="rsvp"] .guest-rsvp label[for="no"] {
-  display: inline-block; /* same line */
+  display: inline-block; / * same line * /
 }
 
 .content-section[data-menu="rsvp"] .guest-rsvp button.delete {
@@ -363,6 +373,6 @@ select {
   form.guest-rsvp:nth-of-type(1)
   button.delete {
   display: none;
-}
+} */
 
 /* end section-specific styles */

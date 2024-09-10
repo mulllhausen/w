@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document
         .querySelector('select#currency')
         .addEventListener('change', changeCurrency);
-    initRSVP();
+    initGoogleRSVPForm();
+    //initRSVP();
 });
 
 // functions
@@ -172,307 +173,314 @@ function getLocalisationData() {
     };
 }
 
-// RSVP form
+// Google RSVP form
 
-function initRSVP() {
-    const rsvpData = JSON.parse(localStorage.getItem('rsvp-data')) || [];
-    const numGuestsToPopulate = rsvpData.length === 0 ? 1 : rsvpData.length;
-    for (let i = 0; i < numGuestsToPopulate; i++) {
-        cloneGuestRSVP();
-        if (rsvpData == null) continue;
-        if (rsvpData[i] == null) continue;
-        populateGuestData(
-            document.querySelector('#rsvp-list').lastElementChild, rsvpData[i]
-        );
-    }
-    document
-        .querySelector('.content-section[data-menu="rsvp"] button#add-guest')
-        .addEventListener('click', cloneGuestRSVP);
-    document
-        .querySelector('.content-section[data-menu="rsvp"] button#submit-rsvp')
-        .addEventListener('click', submitRSVP);
+function initGoogleRSVPForm() {
+    const iframeWidth = window.innerWidth * 0.8;
+    document.querySelector('#googleFormRSVP').width = iframeWidth;
 }
 
-function cloneGuestRSVP() {
-    const eachGuestRSVPTemplate = document.querySelector('template#guest-rsvp');
+// old RSVP form
 
-    const eachGuestRSVPClone = document
-        .importNode(eachGuestRSVPTemplate.content, true);
+// function initRSVP() {
+//     const rsvpData = JSON.parse(localStorage.getItem('rsvp-data')) || [];
+//     const numGuestsToPopulate = rsvpData.length === 0 ? 1 : rsvpData.length;
+//     for (let i = 0; i < numGuestsToPopulate; i++) {
+//         cloneGuestRSVP();
+//         if (rsvpData == null) continue;
+//         if (rsvpData[i] == null) continue;
+//         populateGuestData(
+//             document.querySelector('#rsvp-list').lastElementChild, rsvpData[i]
+//         );
+//     }
+//     document
+//         .querySelector('.content-section[data-menu="rsvp"] button#add-guest')
+//         .addEventListener('click', cloneGuestRSVP);
+//     document
+//         .querySelector('.content-section[data-menu="rsvp"] button#submit-rsvp')
+//         .addEventListener('click', submitRSVP);
+// }
 
-    document.querySelector('#rsvp-list').appendChild(eachGuestRSVPClone);
-    initNewGuestEvents(document.querySelector('#rsvp-list').lastElementChild);
-    resetAllGuestNumbers();
-}
+// function cloneGuestRSVP() {
+//     const eachGuestRSVPTemplate = document.querySelector('template#guest-rsvp');
 
-function initNewGuestEvents(newGuestRSVPForm) {
-    initDietaryRequirementsEvents(newGuestRSVPForm);
-    initDeleteButtonEvents(newGuestRSVPForm);
-    newGuestRSVPForm
-        .querySelector('input[type="text"][name="guest-name"]')
-        .addEventListener('keyup', debouncedUpdatedRSVP);
-    newGuestRSVPForm
-        .querySelectorAll(
-            'input[type="radio"][name="attending-welcome-soiree"],' +
-            'input[type="radio"][name="attending-wedding-day"]'
-        ).forEach(radioEl => {
-            radioEl.addEventListener('change', updatedRSVP);
-        });
-    newGuestRSVPForm
-        .querySelector('textarea.rsvp-dietary-requirements')
-        .addEventListener('keyup', debouncedUpdatedRSVP);
-}
+//     const eachGuestRSVPClone = document
+//         .importNode(eachGuestRSVPTemplate.content, true);
 
-function initDietaryRequirementsEvents(newGuestRSVPForm) {
-    const dietaryRequirementsInput = newGuestRSVPForm
-        .querySelector('label.dietary-requirements');
+//     document.querySelector('#rsvp-list').appendChild(eachGuestRSVPClone);
+//     initNewGuestEvents(document.querySelector('#rsvp-list').lastElementChild);
+//     resetAllGuestNumbers();
+// }
 
-    function updateDietaryRequirementsVisibility() {
-        const attendingWelcomeSoiree = getRadioButtonValue(
-            'attending-welcome-soiree', newGuestRSVPForm
-        ) == 'yes';
-        const attendingWeddingDay = getRadioButtonValue(
-            'attending-wedding-day', newGuestRSVPForm
-        ) == 'yes';
+// function initNewGuestEvents(newGuestRSVPForm) {
+//     initDietaryRequirementsEvents(newGuestRSVPForm);
+//     initDeleteButtonEvents(newGuestRSVPForm);
+//     newGuestRSVPForm
+//         .querySelector('input[type="text"][name="guest-name"]')
+//         .addEventListener('keyup', debouncedUpdatedRSVP);
+//     newGuestRSVPForm
+//         .querySelectorAll(
+//             'input[type="radio"][name="attending-welcome-soiree"],' +
+//             'input[type="radio"][name="attending-wedding-day"]'
+//         ).forEach(radioEl => {
+//             radioEl.addEventListener('change', updatedRSVP);
+//         });
+//     newGuestRSVPForm
+//         .querySelector('textarea.rsvp-dietary-requirements')
+//         .addEventListener('keyup', debouncedUpdatedRSVP);
+// }
 
-        if (attendingWelcomeSoiree || attendingWeddingDay) {
-            dietaryRequirementsInput.classList.remove('hidden');
-        } else {
-            dietaryRequirementsInput.classList.add('hidden');
-        }
-    }
+// function initDietaryRequirementsEvents(newGuestRSVPForm) {
+//     const dietaryRequirementsInput = newGuestRSVPForm
+//         .querySelector('label.dietary-requirements');
 
-    newGuestRSVPForm.querySelectorAll(
-        'input[name="attending-welcome-soiree"],' +
-        'input[name="attending-wedding-day"]'
-    ).forEach(radioEl => {
-        radioEl.addEventListener('change', updateDietaryRequirementsVisibility);
-    });
+//     function updateDietaryRequirementsVisibility() {
+//         const attendingWelcomeSoiree = getRadioButtonValue(
+//             'attending-welcome-soiree', newGuestRSVPForm
+//         ) == 'yes';
+//         const attendingWeddingDay = getRadioButtonValue(
+//             'attending-wedding-day', newGuestRSVPForm
+//         ) == 'yes';
 
-    updateDietaryRequirementsVisibility();
-}
+//         if (attendingWelcomeSoiree || attendingWeddingDay) {
+//             dietaryRequirementsInput.classList.remove('hidden');
+//         } else {
+//             dietaryRequirementsInput.classList.add('hidden');
+//         }
+//     }
 
-function initDeleteButtonEvents(newGuestRSVPForm) {
-    newGuestRSVPForm.querySelector('button.delete').addEventListener('click', () => {
-        newGuestRSVPForm.remove();
-        resetAllGuestNumbers();
-        validateAllRSVPGuests();
-    });
-}
+//     newGuestRSVPForm.querySelectorAll(
+//         'input[name="attending-welcome-soiree"],' +
+//         'input[name="attending-wedding-day"]'
+//     ).forEach(radioEl => {
+//         radioEl.addEventListener('change', updateDietaryRequirementsVisibility);
+//     });
 
-function resetAllGuestNumbers() {
-    const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
-    allGuestRSVPForms.forEach((guestRSVPForm, index) => {
-        guestRSVPForm.querySelector('h1').textContent = `Guest ${index + 1}`;
-    });
-}
+//     updateDietaryRequirementsVisibility();
+// }
 
-function populateGuestData(guestRSVPForm, guestData) {
-    if (guestData == null) return;
-    guestRSVPForm.querySelector(
-        'input[type="text"][name="guest-name"]'
-    ).value = guestData.guestName;
-    setRadioButtonValue(
-        'attending-welcome-soiree',
-        guestData.attendingWelcomeSoiree,
-        guestRSVPForm
-    );
-    setRadioButtonValue(
-        'attending-wedding-day',
-        guestData.attendingWeddingDay,
-        guestRSVPForm
-    );
-    guestRSVPForm.querySelector(
-        'textarea.rsvp-dietary-requirements'
-    ).value = guestData.dietaryRequirements;
-    if (
-        guestData.attendingWelcomeSoiree === 'yes' ||
-        guestData.attendingWeddingDay === 'yes'
-    ) {
-        guestRSVPForm
-            .querySelector('label.dietary-requirements')
-            .classList.remove('hidden');
-    }
-}
+// function initDeleteButtonEvents(newGuestRSVPForm) {
+//     newGuestRSVPForm.querySelector('button.delete').addEventListener('click', () => {
+//         newGuestRSVPForm.remove();
+//         resetAllGuestNumbers();
+//         validateAllRSVPGuests();
+//     });
+// }
 
-function submitRSVP() {
-    saveRSVP();
+// function resetAllGuestNumbers() {
+//     const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
+//     allGuestRSVPForms.forEach((guestRSVPForm, index) => {
+//         guestRSVPForm.querySelector('h1').textContent = `Guest ${index + 1}`;
+//     });
+// }
 
-    const validatedAllGood = validateAllRSVPGuests();
-    if (!validatedAllGood) return;
+// function populateGuestData(guestRSVPForm, guestData) {
+//     if (guestData == null) return;
+//     guestRSVPForm.querySelector(
+//         'input[type="text"][name="guest-name"]'
+//     ).value = guestData.guestName;
+//     setRadioButtonValue(
+//         'attending-welcome-soiree',
+//         guestData.attendingWelcomeSoiree,
+//         guestRSVPForm
+//     );
+//     setRadioButtonValue(
+//         'attending-wedding-day',
+//         guestData.attendingWeddingDay,
+//         guestRSVPForm
+//     );
+//     guestRSVPForm.querySelector(
+//         'textarea.rsvp-dietary-requirements'
+//     ).value = guestData.dietaryRequirements;
+//     if (
+//         guestData.attendingWelcomeSoiree === 'yes' ||
+//         guestData.attendingWeddingDay === 'yes'
+//     ) {
+//         guestRSVPForm
+//             .querySelector('label.dietary-requirements')
+//             .classList.remove('hidden');
+//     }
+// }
 
-    const to = deobfuscate(
-        '109-97-103-97-100-97-110-106-104-111-110-101-' +
-        '115-115-97-64-103-109-97-105-108-46-99-111-109'
-    );
-    const cc = deobfuscate(
-        '112-101-116-101-114-109-105-108-108-101-114-49-57-56-54-64-103-109-97-' +
-        '105-108-46-99-111-109'
-    );
-    const subject = 'RSVP for Peter and Jhonessa\'s Wedding';
-    const body = formatEmailBody(getAllGuestData()).join('\n\n');
+// function submitRSVP() {
+//     saveRSVP();
 
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-    const mailtoURL = `mailto:${to}?cc=${cc}&subject=${encodedSubject}&body=${encodedBody}`;
+//     const validatedAllGood = validateAllRSVPGuests();
+//     if (!validatedAllGood) return;
 
-    const anchor = document.createElement('a');
-    anchor.href = mailtoURL;
-    anchor.style.display = 'none';
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
-}
+//     const to = deobfuscate(
+//         '109-97-103-97-100-97-110-106-104-111-110-101-' +
+//         '115-115-97-64-103-109-97-105-108-46-99-111-109'
+//     );
+//     const cc = deobfuscate(
+//         '112-101-116-101-114-109-105-108-108-101-114-49-57-56-54-64-103-109-97-' +
+//         '105-108-46-99-111-109'
+//     );
+//     const subject = 'RSVP for Peter and Jhonessa\'s Wedding';
+//     const body = formatEmailBody(getAllGuestData()).join('\n\n');
 
-function saveRSVP() {
-    const rsvpData = getAllGuestData();
-    localStorage.setItem('rsvp-data', JSON.stringify(rsvpData));
-}
+//     const encodedSubject = encodeURIComponent(subject);
+//     const encodedBody = encodeURIComponent(body);
+//     const mailtoURL = `mailto:${to}?cc=${cc}&subject=${encodedSubject}&body=${encodedBody}`;
 
-function getAllGuestData() {
-    return Array
-        .from(document.querySelectorAll('form.guest-rsvp'))
-        .map(guestRSVPForm => get1GuestData(guestRSVPForm))
-        .filter(oneGuestData => oneGuestData !== null);
-}
+//     const anchor = document.createElement('a');
+//     anchor.href = mailtoURL;
+//     anchor.style.display = 'none';
+//     document.body.appendChild(anchor);
+//     anchor.click();
+//     document.body.removeChild(anchor);
+// }
 
-function get1GuestData(guestRSVPForm) {
-    const guestName = guestRSVPForm
-        .querySelector('input[type="text"][name="guest-name"]')
-        .value.trim();
-    const attendingWelcomeSoiree = getRadioButtonValue(
-        'attending-welcome-soiree', guestRSVPForm
-    );
-    const attendingWeddingDay = getRadioButtonValue(
-        'attending-wedding-day', guestRSVPForm
-    );
-    const dietaryRequirements = guestRSVPForm
-        .querySelector('textarea.rsvp-dietary-requirements')
-        .value.trim();;
+// function saveRSVP() {
+//     const rsvpData = getAllGuestData();
+//     localStorage.setItem('rsvp-data', JSON.stringify(rsvpData));
+// }
 
-    if (
-        guestName === '' &&
-        attendingWelcomeSoiree == null &&
-        attendingWeddingDay == null &&
-        dietaryRequirements === ''
-    ) return null;
+// function getAllGuestData() {
+//     return Array
+//         .from(document.querySelectorAll('form.guest-rsvp'))
+//         .map(guestRSVPForm => get1GuestData(guestRSVPForm))
+//         .filter(oneGuestData => oneGuestData !== null);
+// }
 
-    return {
-        guestName,
-        attendingWelcomeSoiree,
-        attendingWeddingDay,
-        dietaryRequirements
-    };
-}
+// function get1GuestData(guestRSVPForm) {
+//     const guestName = guestRSVPForm
+//         .querySelector('input[type="text"][name="guest-name"]')
+//         .value.trim();
+//     const attendingWelcomeSoiree = getRadioButtonValue(
+//         'attending-welcome-soiree', guestRSVPForm
+//     );
+//     const attendingWeddingDay = getRadioButtonValue(
+//         'attending-wedding-day', guestRSVPForm
+//     );
+//     const dietaryRequirements = guestRSVPForm
+//         .querySelector('textarea.rsvp-dietary-requirements')
+//         .value.trim();;
 
-const debouncedUpdatedRSVP = debounce(updatedRSVP, 1000);
+//     if (
+//         guestName === '' &&
+//         attendingWelcomeSoiree == null &&
+//         attendingWeddingDay == null &&
+//         dietaryRequirements === ''
+//     ) return null;
 
-function updatedRSVP() {
-    saveRSVP();
-    validateAllRSVPGuests();
-}
+//     return {
+//         guestName,
+//         attendingWelcomeSoiree,
+//         attendingWeddingDay,
+//         dietaryRequirements
+//     };
+// }
 
-function debounce(function_, wait) {
-    let timeout;
-    return function (...args) {
-        const context = this;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            function_.apply(context, args);
-        }, wait);
-    };
-}
+// const debouncedUpdatedRSVP = debounce(updatedRSVP, 1000);
 
-function formatEmailBody(rsvpData) {
-    return rsvpData
-        .map((guestData, index) => {
-            return format1GuestData(guestData, index);
-        });
-}
+// function updatedRSVP() {
+//     saveRSVP();
+//     validateAllRSVPGuests();
+// }
 
-function format1GuestData(guestData, index) {
-    const formattedDietaryRequirements = (
-        guestData.attendingWelcomeSoiree === 'yes' ||
-        guestData.attendingWeddingDay === 'yes'
-    ) ? `Dietary Requirements: ${guestData.dietaryRequirements}` : '';
-    return `${guestData.guestName}
-Attending the Welcome Soirée: ${guestData.attendingWelcomeSoiree}
-Attending on the Wedding Day: ${guestData.attendingWeddingDay}
-${formattedDietaryRequirements}`;
-}
+// function debounce(function_, wait) {
+//     let timeout;
+//     return function (...args) {
+//         const context = this;
+//         clearTimeout(timeout);
+//         timeout = setTimeout(() => {
+//             function_.apply(context, args);
+//         }, wait);
+//     };
+// }
 
-function getRadioButtonValue(radioGroupName, parentElement) {
-    if (parentElement == null) {
-        parentElement = document;
-    }
-    return parentElement
-        .querySelector(`input[type="radio"][name="${radioGroupName}"]:checked`)?.value;
-}
+// function formatEmailBody(rsvpData) {
+//     return rsvpData
+//         .map((guestData, index) => {
+//             return format1GuestData(guestData, index);
+//         });
+// }
 
-function setRadioButtonValue(radionGroupName, value, parentElement) {
-    if (value == null) return;
-    if (parentElement == null) {
-        parentElement = document;
-    }
-    parentElement
-        .querySelector(`input[type="radio"][name="${radionGroupName}"][value="${value}"]`)
-        .checked = true;
-}
+// function format1GuestData(guestData, index) {
+//     const formattedDietaryRequirements = (
+//         guestData.attendingWelcomeSoiree === 'yes' ||
+//         guestData.attendingWeddingDay === 'yes'
+//     ) ? `Dietary Requirements: ${guestData.dietaryRequirements}` : '';
+//     return `${guestData.guestName}
+// Attending the Welcome Soirée: ${guestData.attendingWelcomeSoiree}
+// Attending on the Wedding Day: ${guestData.attendingWeddingDay}
+// ${formattedDietaryRequirements}`;
+// }
 
-function validateAllRSVPGuests() {
-    const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
-    let allErrors = [];
-    allGuestRSVPForms.forEach((guestRSVPForm, index) => {
-        allErrors = allErrors.concat(validate1GuestForm(guestRSVPForm, index + 1));
-    });
-    let validationErrorListHTML = '';
-    if (allErrors.length > 0) {
-        validationErrorListHTML =
-            '<p><mark>Please enter the following missing information:</mark></p>\n' +
-            '<ul>\n' +
-            '<li><mark>' +
-            allErrors.join('</mark></li>\n<li><mark>') +
-            '</mark></li>\n' +
-            '</ul>';
-    }
-    document.querySelector('#rsvp-errors').innerHTML = validationErrorListHTML;
-    return allErrors.length === 0;
-}
+// function getRadioButtonValue(radioGroupName, parentElement) {
+//     if (parentElement == null) {
+//         parentElement = document;
+//     }
+//     return parentElement
+//         .querySelector(`input[type="radio"][name="${radioGroupName}"]:checked`)?.value;
+// }
 
-function validate1GuestForm(guestForm, guestNumber) {
-    let errors = [];
-    const guestNameInput = guestForm.querySelector(
-        'input[type="text"][name="guest-name"]'
-    );
-    const attendingWelcomeSoiree = getRadioButtonValue('attending-welcome-soiree', guestForm);
-    const attendingWeddingDay = getRadioButtonValue('attending-wedding-day', guestForm);
+// function setRadioButtonValue(radionGroupName, value, parentElement) {
+//     if (value == null) return;
+//     if (parentElement == null) {
+//         parentElement = document;
+//     }
+//     parentElement
+//         .querySelector(`input[type="radio"][name="${radionGroupName}"][value="${value}"]`)
+//         .checked = true;
+// }
 
-    let guestName = `Guest ${guestNumber}`;
-    if (guestNameInput.value.trim() === '') {
-        errors.push(`Please enter the Name of ${guestName}.`);
-    } else {
-        guestName = guestNameInput.value.trim();
-    }
+// function validateAllRSVPGuests() {
+//     const allGuestRSVPForms = document.querySelectorAll('form.guest-rsvp');
+//     let allErrors = [];
+//     allGuestRSVPForms.forEach((guestRSVPForm, index) => {
+//         allErrors = allErrors.concat(validate1GuestForm(guestRSVPForm, index + 1));
+//     });
+//     let validationErrorListHTML = '';
+//     if (allErrors.length > 0) {
+//         validationErrorListHTML =
+//             '<p><mark>Please enter the following missing information:</mark></p>\n' +
+//             '<ul>\n' +
+//             '<li><mark>' +
+//             allErrors.join('</mark></li>\n<li><mark>') +
+//             '</mark></li>\n' +
+//             '</ul>';
+//     }
+//     document.querySelector('#rsvp-errors').innerHTML = validationErrorListHTML;
+//     return allErrors.length === 0;
+// }
 
-    if (attendingWelcomeSoiree == null) {
-        errors.push(`Please select if ${guestName} is attending the Welcome Soirée.`);
-    }
+// function validate1GuestForm(guestForm, guestNumber) {
+//     let errors = [];
+//     const guestNameInput = guestForm.querySelector(
+//         'input[type="text"][name="guest-name"]'
+//     );
+//     const attendingWelcomeSoiree = getRadioButtonValue('attending-welcome-soiree', guestForm);
+//     const attendingWeddingDay = getRadioButtonValue('attending-wedding-day', guestForm);
 
-    if (attendingWeddingDay == null) {
-        errors.push(`Please select if ${guestName} is attending the Wedding Day.`);
-    }
+//     let guestName = `Guest ${guestNumber}`;
+//     if (guestNameInput.value.trim() === '') {
+//         errors.push(`Please enter the Name of ${guestName}.`);
+//     } else {
+//         guestName = guestNameInput.value.trim();
+//     }
 
-    return errors;
-}
+//     if (attendingWelcomeSoiree == null) {
+//         errors.push(`Please select if ${guestName} is attending the Welcome Soirée.`);
+//     }
 
-function obfuscate(str) {
-    let obfuscated = [];
-    for (var i = 0; i < str.length; i++) {
-        obfuscated.push(str.charCodeAt(i));
-    }
-    return obfuscated.join('-');
-}
+//     if (attendingWeddingDay == null) {
+//         errors.push(`Please select if ${guestName} is attending the Wedding Day.`);
+//     }
 
-function deobfuscate(str) {
-    return str.split('-')
-        .map(code => String.fromCharCode(code)).join('');
-}
+//     return errors;
+// }
+
+// function obfuscate(str) {
+//     let obfuscated = [];
+//     for (var i = 0; i < str.length; i++) {
+//         obfuscated.push(str.charCodeAt(i));
+//     }
+//     return obfuscated.join('-');
+// }
+
+// function deobfuscate(str) {
+//     return str.split('-')
+//         .map(code => String.fromCharCode(code)).join('');
+// }
