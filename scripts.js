@@ -176,8 +176,8 @@ function getLocalisationData() {
 // Google RSVP form
 
 function initGoogleRSVPForm() {
-    const iframeWidth = window.innerWidth * 0.8;
-    document.querySelector('#googleFormRSVP').width = iframeWidth;
+    // const iframeWidth = window.innerWidth * 0.8;
+    // document.querySelector('#googleFormRSVP').width = iframeWidth;
 }
 
 // old RSVP form
