@@ -176,13 +176,17 @@ function getLocalisationData() {
 // Google RSVP form
 
 function initGoogleRSVPForm() {
-    const iframeWidth = window.innerWidth;
+    const screenWidth = window.innerWidth;
+    let iframeHeight = 1400;
+    if (screenWidth < 700) {
+        iframeHeight = 1600;
+    }
     const iframe = `<iframe
     id="googleFormRSVP"
     class="google-form"
     src="https://docs.google.com/forms/d/e/1FAIpQLScVlgQHoJWD8isgrsBxRjUOwksshnWgonaSbHphIkSVlCxcoQ/viewform?embedded=true"
-    width="${iframeWidth}"
-    height="1400"
+    width="${screenWidth}"
+    height="${iframeHeight}"
     frameborder="0"
     marginheight="0"
     marginwidth="0"
