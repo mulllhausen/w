@@ -176,8 +176,18 @@ function getLocalisationData() {
 // Google RSVP form
 
 function initGoogleRSVPForm() {
-    // const iframeWidth = window.innerWidth * 0.8;
-    // document.querySelector('#googleFormRSVP').width = iframeWidth;
+    const iframeWidth = window.innerWidth;
+    const iframe = `<iframe
+    id="googleFormRSVP"
+    class="google-form"
+    src="https://docs.google.com/forms/d/e/1FAIpQLScVlgQHoJWD8isgrsBxRjUOwksshnWgonaSbHphIkSVlCxcoQ/viewform?embedded=true"
+    width="${iframeWidth}"
+    height="1400"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0"
+    >Loading...</iframe>`;
+    document.querySelector('#googleFormRSVPContainer').innerHTML = iframe;
 }
 
 // old RSVP form

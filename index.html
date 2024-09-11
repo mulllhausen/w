@@ -16,8 +16,8 @@
     <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
     <title>Peter and Jhonessa</title>
     <script src="scrollmagic-2.0.7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=34" />
-    <script src="scripts.js?v=29"></script>
+    <link rel="stylesheet" href="styles.css?v=35" />
+    <script src="scripts.js?v=30"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -973,29 +973,14 @@
 
     <div id="rsvp" class="parallax-section" data-menu="rsvp"></div>
     <div class="content-section" data-menu="rsvp">
+      <p>Please RSVP by 28 December 2024</p>
       <p>
-        <mark>Please RSVP only for guests that have been invited.</mark>
+        <mark>RSVP only for guests that have been invited.</mark>
       </p>
       <p>
-        <mark
-          >For example if you are only RSVPing for 2 guests then just fill in
-          Guest 1 & 2 and click <b>Next</b> on Guests 3, 4 & 5.</mark
-        >
+        <mark>Make sure to click <b>Submit</b> at the end.</mark>
       </p>
-      <p><mark>Make sure to click <b>Submit</b> at the end.</mark></p>
-      <div class="centerer">
-        <iframe
-          id="googleFormRSVP"
-          class="google-form"
-          src="https://docs.google.com/forms/d/e/1FAIpQLScVlgQHoJWD8isgrsBxRjUOwksshnWgonaSbHphIkSVlCxcoQ/viewform?embedded=true"
-          width="100%"
-          height="1400"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          >Loading…</iframe
-        >
-      </div>
+      <div id="googleFormRSVPContainer" class="centerer"></div>
 
       <!-- <div id="rsvp-list" class="rsvp-list centerer">
         <template id="guest-rsvp">

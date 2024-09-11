@@ -297,7 +297,7 @@ select {
 }
 
 .content-section[data-menu="rsvp"] iframe.google-form {
-  width: 100%;
+  /* width: 100%; */
   display: table;
   position: relative;
   /* border: 1px solid lightgray;
